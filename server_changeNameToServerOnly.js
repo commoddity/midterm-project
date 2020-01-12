@@ -1,3 +1,4 @@
+/*
 // load .env data into process.env
 require('dotenv').config();
 
@@ -50,7 +51,8 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.get("/", (req, res) => {
   res.render("index");
 });
-//app.get("/menuitems", (req,res) =>{res.send('Welcome!')})
+
 app.listen(PORT, HOST, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+*/
