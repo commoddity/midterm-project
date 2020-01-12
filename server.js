@@ -3,6 +3,7 @@ require('dotenv').config();
 
 // Web server config
 const PORT       = process.env.PORT || 8080;
+const HOST       = '0.0.0.0';
 const ENV        = process.env.ENV || "development";
 const express    = require("express");
 const bodyParser = require("body-parser");
@@ -50,6 +51,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, HOST, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
