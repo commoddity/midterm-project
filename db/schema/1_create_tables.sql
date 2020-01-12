@@ -29,6 +29,7 @@ CREATE TABLE menu_items (
   restaurant_id INTEGER REFERENCES restaurants(id) ON DELETE CASCADE,
   name VARCHAR(255) NOT NULL,
   price INTEGER NOT NULL,
+  image_url VARCHAR(255),
   available BOOLEAN DEFAULT true
 );
 
@@ -38,7 +39,7 @@ CREATE TABLE orders (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   time_placed TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   time_ready TIMESTAMP DEFAULT NULL,
-  ready BOOLEAN DEFAULT false
+  picked_up BOOLEAN DEFAULT false
 );
 
 CREATE TABLE order_items (

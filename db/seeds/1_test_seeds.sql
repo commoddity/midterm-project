@@ -10,7 +10,7 @@ VALUES (1, 'Eggs Benny', 10),
 (1, 'Fruit Salad', 7),
 (1, 'Chicken and Waffles', 12),
 (1, 'Hashbrowns', 5),
-(1, 'Breafast Burrio', 9),
+(1, 'Breakfast Burrito', 9),
 (1, 'Fried Egg', 3);
 
 INSERT INTO orders (restaurant_id, user_id)
