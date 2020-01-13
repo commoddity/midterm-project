@@ -2,9 +2,10 @@ const db = require('../../server/index.js');
 
 //Helper Functions
 
+//
+
 //Database Queries
 const getMenuItemsFromDatabase = () => {
-  console.log("TEST");
   const queryString = `
   SELECT id, name, price, image_url
   FROM menu_items
