@@ -12,8 +12,8 @@ $(document).ready(() =>{
             <div class="quantity">
               <button onclick="plusItem()"><img class="plus" src="/../img/plus.png"></button>
               <input class="quantity-field" type="text" name="name" value="1">
-              <button onclick="minueItem()"><img class="minus" src="/../img/minus.png"></button>
-              <button onclick="saveItem()">Add to Cart</button>
+              <button onclick="minusItem()"><img class="minus" src="/../img/minus.png"></button>
+              <button id="add-to-cart">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -44,6 +44,15 @@ $(document).ready(() =>{
     })
     .catch(e => console.error(e))
   };
+
+  $(document).on("click", "#add-to-cart", () => {
+    console.log("Add to cart function: ");
+  });
+
+  // const saveItem = () => {
+  //   // var data = $("#data").val();
+  //   // localStorage.setItem(name, data);
+  // };
 
   loadMenuItems();
 
