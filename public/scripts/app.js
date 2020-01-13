@@ -16,30 +16,40 @@
 $(document).ready(() =>{
 
   const createMenuItem = function (dataObj) {
-    const menuItem = 
+    const menuItem =
     `
-      <div class="container" style="display: flex; margin: auto;">
-      <div class="card">
-        <img class="card-img-top" src="${dataObj.image_url}" alt="Card image cap">
-        <div class="card-body">
-          <p class="card-text">"${dataObj.name}"</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+      <div class="menu-item">
+        <div class="card">
+          <img class="menu-item-image" src="${dataObj.image_url}" alt="Card image cap">
+          <div class="item-body">
+            <span class="item-text">${dataObj.name}</span>
+            <span class="item-price">${dataObj.price}</span>
+            <div class="quantity">
+            <button class="plus-btn" type="button" name="button">
+              <img src="plus.svg" alt="" />
+            </button>
+            <input type="text" name="name" value="1">
+            <button class="minus-btn" type="button" name="button">
+              <img src="minus.svg" alt="" />
+            </button>
+          </div>
+          </div>
         </div>
       </div>
     `
     return menuItem;
-  }
+  };
 
-  const renderMenuItems = function (dataArr) {
-    let menuContainer = $(`.container`);
+  const renderMenuItems = (dataArr) => {
+    let menuContainer = $(`.menu-container`);
     menuContainer.empty();
     dataArr.forEach(dataObj => {
       const menuItem = createMenuItem(dataObj);
       menuContainer.append(menuItem)
     });
-  }
+  };
 
-  const loadMenuItems = function () {
+  const loadMenuItems = () => {
     const get_url = `/menu`;
     const request_method = `GET`;
     $.ajax({
@@ -52,8 +62,8 @@ $(document).ready(() =>{
       console.log(data)
     })
     .catch(e => console.error(e))
-  }
-          
+  };
+
   loadMenuItems();
 
-})
+});
