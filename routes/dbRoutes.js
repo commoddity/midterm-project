@@ -2,14 +2,14 @@ const express = require('express');
 
 const router = express.Router();
 
-module.exports = (db, helpers) => {
+module.exports = (menuItemsService) => {
 
   router.get("/", (req, res) => {
     res.render("index");
   })
 
   router.get("/menu", (req, res) => {
-    helpers.getMenuItemsFromDatabase()
+    menuItemsService.getMenuItems()
     .then(result => {
       const data = result;
       res.json({data});

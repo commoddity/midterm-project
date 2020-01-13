@@ -25,12 +25,13 @@ db.connect();
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/styles", sass({
+app.use(sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
   debug: true,
   outputStyle: 'expanded'
 }));
+
 app.use(express.static("public"));
 
 // Separated Routes for each Resource
@@ -38,14 +39,21 @@ app.use(express.static("public"));
 const usersRoutes = require("../routes/users");
 const widgetsRoutes = require("../routes/widgets");
 const dbRoutes = require("../routes/dbRoutes");
-const helpers = require('../public/scripts/helpers')
+
+// const helpers = require('../public/scripts/helpers')
+
+const menuItemsRepositoryFactory = require("../repository/menu_items");
+const menuItemsServiceFactory = require("../service/menu_items");
+
+const menuItemsRepository = menuItemsRepositoryFactory(db)
+const menuItemsService = menuItemsServiceFactory(menuItemsRepository)
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
-app.use("/", dbRoutes(db, helpers));
+app.use("/", dbRoutes(menuItemsService));
 
 // Home page
 // Warning: avoid creating more routes in this file!
