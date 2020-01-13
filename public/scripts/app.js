@@ -10,9 +10,10 @@ $(document).ready(() =>{
             <span class="item-text">${dataObj.name}</span>
             <span class="item-price">$${dataObj.price}.00</span>
             <div class="quantity">
-              <button onclick="myFunction()"><img class="plus" src="/../img/plus.png"></button>
+              <button onclick="plusItem()"><img class="plus" src="/../img/plus.png"></button>
               <input class="quantity-field" type="text" name="name" value="1">
-              <button onclick="myFunction()"><img class="minus" src="/../img/minus.png"></button>
+              <button onclick="minueItem()"><img class="minus" src="/../img/minus.png"></button>
+              <button onclick="saveItem()">Add to Cart</button>
             </div>
           </div>
         </div>
