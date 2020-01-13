@@ -4,6 +4,6 @@ require('dotenv').config();
 // PG database client/connection setup
 const dbParams = require('../lib/db.js');
 const db = new Pool(dbParams);
-// db.connect();
+db.connect();
 
 module.exports = db;
