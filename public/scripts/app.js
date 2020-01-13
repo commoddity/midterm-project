@@ -1,18 +1,3 @@
-// $(document).ready(function () {
-//   console.log('I am running from app.js')
-//   $(() => {
-//     $.ajax({
-//       method: "GET",
-//       url: "/api/users"
-//     }).done((users) => {console.log('After data is being fetched')
-//       for(user of users) {
-//         $("<div>").text(user.name).appendTo($("body"));
-//       }
-//     });;
-//   });
-
-// });
-
 $(document).ready(() =>{
 
   const createMenuItem = function (dataObj) {
@@ -23,16 +8,12 @@ $(document).ready(() =>{
           <img class="menu-item-image" src="${dataObj.image_url}" alt="Card image cap">
           <div class="item-body">
             <span class="item-text">${dataObj.name}</span>
-            <span class="item-price">${dataObj.price}</span>
+            <span class="item-price">$${dataObj.price}.00</span>
             <div class="quantity">
-            <button class="plus-btn" type="button" name="button">
-              <img src="plus.svg" alt="" />
-            </button>
-            <input type="text" name="name" value="1">
-            <button class="minus-btn" type="button" name="button">
-              <img src="minus.svg" alt="" />
-            </button>
-          </div>
+              <button onclick="myFunction()"><img class="plus" src="/../img/plus.png"></button>
+              <input class="quantity-field" type="text" name="name" value="1">
+              <button onclick="myFunction()"><img class="minus" src="/../img/minus.png"></button>
+            </div>
           </div>
         </div>
       </div>
@@ -59,7 +40,6 @@ $(document).ready(() =>{
     .done((result) => {
       const data = result.data;
       renderMenuItems(data);
-      console.log(data)
     })
     .catch(e => console.error(e))
   };

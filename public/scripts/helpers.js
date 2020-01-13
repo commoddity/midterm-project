@@ -3,20 +3,17 @@ const db = require('../../server/index.js')
 //Helper Functions
 
 //Database Queries
-const getMenuImageFromDatabase = (menuItem) => {
+const getMenuItemsFromDatabase = () => {
+  console.log("TEST");
   const queryString = `
-  SELECT name, price, image_url
+  SELECT id, name, price, image_url
   FROM menu_items
-  WHERE id = $1;
   `
-  id = [menuItem];
-  return db.query(queryString, id)
-  .then((res) => res.rows[0])
+  return db.query(queryString)
+  .then((res) => res.rows)
   .catch((err) => {
     console.error('query error', err.stack);
   });
 };
 
-getMenuImageFromDatabase(1);
-
-module.exports = getMenuImageFromDatabase;
+exports.getMenuItemsFromDatabase = getMenuItemsFromDatabase;
