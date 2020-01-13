@@ -1,5 +1,6 @@
-const { Pool } = require('pg');
 require('dotenv').config();
+
+const { Pool } = require('pg');
 
 // PG database client/connection setup
 const dbParams = require('../lib/db.js');

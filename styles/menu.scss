@@ -8,13 +8,13 @@
 
 .menu-item {
   display: grid;
+  width: 330px;
 }
 
 .menu-item-image {
   height: 260px;
   width: auto;
 }
-
 
 .item-body {
   margin-left: 10px;
@@ -27,6 +27,10 @@
 
 .quantity {
   align-items: right;
+}
+
+.quantity-field {
+  width: 30px;
 }
 
 .plus {

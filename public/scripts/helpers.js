@@ -1,4 +1,4 @@
-const db = require('../../server/index.js')
+const db = require('../../server/index.js');
 
 //Helper Functions
 

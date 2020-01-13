@@ -6,8 +6,6 @@ module.exports = (db, helpers) => {
 
   router.get("/", (req, res) => {
     res.render("index");
-    res.redirect("/menu");
-    res.redirect("/index")
   })
 
   router.get("/menu", (req, res) => {
