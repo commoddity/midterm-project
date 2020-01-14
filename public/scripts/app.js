@@ -18,15 +18,15 @@ $(document).ready(() =>{
               <button class="minus-btn" type="button" name="button">
               <img class="minus" src="../img/minus.png" alt="" />
               </button>
-              <button class="add-to-cart">Add to Cart</button>
+              <button class="add-to-cart" disabled>Add to Cart</button>
             </div>
           </div>
         </div>
       </div>
     `
+    
     return menuItem;
   };
-
   const renderMenuItems = (dataArr) => {
     let menuContainer = $(`.menu-container`);
     menuContainer.empty();
@@ -34,6 +34,7 @@ $(document).ready(() =>{
       const menuItem = createMenuItem(dataObj);
       menuContainer.append(menuItem)
     });
+    //($("div.quantity").data("value")) ? $("add-to-cart").attr("disabled", false) : $("add-to-cart").attr("disabled", true);
   };
 
   const loadMenuItems = () => {
@@ -49,6 +50,8 @@ $(document).ready(() =>{
     })
     .catch(e => console.error(e));
   };
+  let count = localStorage.length;
+  console.table(localStorage)
 
   // Click Handlers for Item Quantities
   $(document).on("click", ".add-to-cart", function() {
@@ -56,9 +59,11 @@ $(document).ready(() =>{
     let $input = $this.closest('div.quantity').find("input");
     let $id = $this.closest('div.quantity').data("value");
     let quantity = parseInt($input.val());
-    console.log("id: ", $id);
-    console.log("quantity: ", quantity);
+    // console.log("id: ", $id);
+    // console.log("quantity: ", quantity);
     localStorage.setItem($id, quantity);
+    count++;
+    $(".qtyVal").html(count)
   });
 
   $(document).on('click', '.minus-btn', function(event) {
@@ -66,12 +71,14 @@ $(document).ready(() =>{
     let $this = $(this);
     let $input = $this.closest('div').find('input');
     let value = parseInt($input.val());
+    const $addToCartBtn = $(this).siblings("button")[1];
     if (value >= 1) {
       value = value - 1;
-    } else {
-      value = 0;
+      if (value === 0) {
+        $($addToCartBtn).attr('disabled', true);
+      }
     }
-  $input.val(value);
+    $input.val(value);
   });
 
   $(document).on('click', '.plus-btn', function(event) {
@@ -79,6 +86,9 @@ $(document).ready(() =>{
     let $this = $(this);
     let $input = $this.closest('div').find('input');
     let value = parseInt($input.val());
+    const $addToCartBtn = $(this).siblings("button")[1];
+    $($addToCartBtn).attr('disabled', false)
+
     if (value <= 100) {
       value = value + 1;
     } else {

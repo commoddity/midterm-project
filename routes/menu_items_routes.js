@@ -1,3 +1,5 @@
+// ONLY DEALS WITH ROUTES --> OTHERWISE KNOWN AS CONTOLLERS
+// HAS DEPENDENCY WITH SERVICE PARAMETERS ONLY
 const express = require('express');
 
 const router = express.Router();
@@ -9,7 +11,7 @@ module.exports = (menuItemsService) => {
   })
 
   router.get("/menu", (req, res) => {
-    menuItemsService.getMenuItems()
+    menuItemsService.getMenuItems()  // --> RETURNS THE PROMISE OF DB QUERY
     .then(result => {
       const data = result;
       res.json({data});

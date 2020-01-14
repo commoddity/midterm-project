@@ -1,3 +1,5 @@
+// DEALS ONLY WITH DATABASE QUERIES
+// HAS DEPENDENCY ONLY WITH DATABASE
 module.exports = (db) => {
   return {
     getMenuItems: () => {

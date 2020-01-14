@@ -1,0 +1,23 @@
+.navbar {
+  background-color: purple;
+  color: white;
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  height: 50px;
+  width: 100%;
+}
+
+.navbar a {
+  color: white;
+  font-size: 20px;
+}
+.shopping-cart img {
+  width: 50px;
+}
+.shopping-cart span {
+  color:red;
+  font-size: 24px;
+  font-weight: 600;
+  margin-right: 10px;
+}
