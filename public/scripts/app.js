@@ -47,7 +47,7 @@ $(document).ready(() =>{
       const data = result.data;
       renderMenuItems(data);
     })
-    .catch(e => console.error(e))
+    .catch(e => console.error(e));
   };
 
   // Click Handlers for Item Quantities
@@ -67,9 +67,9 @@ $(document).ready(() =>{
     let $input = $this.closest('div').find('input');
     let value = parseInt($input.val());
     if (value >= 1) {
-        value = value - 1;
+      value = value - 1;
     } else {
-        value = 0;
+      value = 0;
     }
   $input.val(value);
   });
