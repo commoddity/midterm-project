@@ -1,5 +1,6 @@
 $(document).ready(() =>{
 
+// Menu Creation Functions
   const createMenuItem = function (dataObj) {
     const menuItem =
     `
@@ -9,14 +10,15 @@ $(document).ready(() =>{
           <div class="item-body">
             <span class="item-text">${dataObj.name}</span>
             <span class="item-price">$${dataObj.price}.00</span>
-            <div class="quantity">
+            <div class="quantity" data-value="${dataObj.id}">
               <button class="plus-btn" type="button" name="button">
               <img class="plus" src="../img/plus.png" alt="" />
               </button>
-              <input type="text" name="name" value="0">
+              <input class="item-num" type="text" name="name" value="0">
               <button class="minus-btn" type="button" name="button">
               <img class="minus" src="../img/minus.png" alt="" />
               </button>
+              <button class="add-to-cart">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -48,16 +50,19 @@ $(document).ready(() =>{
     .catch(e => console.error(e))
   };
 
-  const addToCart = () => {
-    console.log("Add to cart function: ");
-  }
-
-  $(document).on("click", ".add-to-cart", () => {
-    addToCart();
+  // Click Handlers for Item Quantities
+  $(document).on("click", ".add-to-cart", function() {
+    let $this = $(this);
+    let $input = $this.closest('div.quantity').find("input");
+    let $id = $this.closest('div.quantity').data("value");
+    let quantity = parseInt($input.val());
+    console.log("id: ", $id);
+    console.log("quantity: ", quantity);
+    localStorage.setItem($id, quantity);
   });
 
-  $(document).on('click', '.minus-btn', function(e) {
-    e.preventDefault();
+  $(document).on('click', '.minus-btn', function(event) {
+    event.preventDefault();
     let $this = $(this);
     let $input = $this.closest('div').find('input');
     let value = parseInt($input.val());
@@ -69,8 +74,8 @@ $(document).ready(() =>{
   $input.val(value);
   });
 
-  $(document).on('click', '.plus-btn', function(e) {
-    e.preventDefault();
+  $(document).on('click', '.plus-btn', function(event) {
+    event.preventDefault();
     let $this = $(this);
     let $input = $this.closest('div').find('input');
     let value = parseInt($input.val());
@@ -81,11 +86,6 @@ $(document).ready(() =>{
     }
   $input.val(value);
   });
-
-  // const saveItem = () => {
-  //   // var data = $("#data").val();
-  //   // localStorage.setItem(name, data);
-  // };
 
   loadMenuItems();
 
