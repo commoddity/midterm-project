@@ -70,9 +70,11 @@ $(document).ready(() =>{
     let value = parseInt($input.val());
     const $addToCartBtn = $(this).siblings("button")[1];
     if (value >= 1) {
+      $($addToCartBtn).text(`Update Cart`);
       value = value - 1;
       if (value === 0) {
-        $($addToCartBtn).attr('disabled', true);
+        // $($addToCartBtn).attr('disabled', true);
+        $($addToCartBtn).text(`Update Cart`);
       }
     }
   $input.val(value);
@@ -87,8 +89,9 @@ $(document).ready(() =>{
     $($addToCartBtn).attr('disabled', false)
     if (value <= 100) {
       value = value + 1;
-    } else {
-      value = 100;
+    } else if(value === 0){
+      // $($addToCartBtn).attr('disabled', true);
+      // value = 100;
     }
   $input.val(value);
   });
