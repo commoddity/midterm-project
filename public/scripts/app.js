@@ -1,3 +1,5 @@
+const { helpers } = ('./helpers.js')
+
 $(document).ready(() =>{
 
 // Menu Creation Functions
@@ -24,17 +26,16 @@ $(document).ready(() =>{
         </div>
       </div>
     `
-    
     return menuItem;
   };
+
   const renderMenuItems = (dataArr) => {
-    let menuContainer = $(`.menu-container`);
+    const menuContainer = $(`.menu-container`);
     menuContainer.empty();
     dataArr.forEach(dataObj => {
       const menuItem = createMenuItem(dataObj);
       menuContainer.append(menuItem)
     });
-    //($("div.quantity").data("value")) ? $("add-to-cart").attr("disabled", false) : $("add-to-cart").attr("disabled", true);
   };
 
   const loadMenuItems = () => {
@@ -47,29 +48,25 @@ $(document).ready(() =>{
     .done((result) => {
       const data = result.data;
       renderMenuItems(data);
+      updateQuantity();
     })
     .catch(e => console.error(e));
   };
-  let count = localStorage.length;
-  console.table(localStorage)
 
   // Click Handlers for Item Quantities
   $(document).on("click", ".add-to-cart", function() {
-    let $this = $(this);
-    let $input = $this.closest('div.quantity').find("input");
-    let $id = $this.closest('div.quantity').data("value");
-    let quantity = parseInt($input.val());
-    // console.log("id: ", $id);
-    // console.log("quantity: ", quantity);
-    localStorage.setItem($id, quantity);
-    count++;
-    $(".qtyVal").html(count)
+    const $this = $(this);
+    const $input = $this.closest('div.quantity').find("input");
+    const $id = $this.closest('div.quantity').data("value");
+    const quantity = parseInt($input.val());
+    JSON.stringify(localStorage.setItem($id, quantity));
+    updateCart();
   });
 
   $(document).on('click', '.minus-btn', function(event) {
     event.preventDefault();
-    let $this = $(this);
-    let $input = $this.closest('div').find('input');
+    const $this = $(this);
+    const $input = $this.closest('div').find('input');
     let value = parseInt($input.val());
     const $addToCartBtn = $(this).siblings("button")[1];
     if (value >= 1) {
@@ -78,17 +75,16 @@ $(document).ready(() =>{
         $($addToCartBtn).attr('disabled', true);
       }
     }
-    $input.val(value);
+  $input.val(value);
   });
 
   $(document).on('click', '.plus-btn', function(event) {
     event.preventDefault();
-    let $this = $(this);
-    let $input = $this.closest('div').find('input');
+    const $this = $(this);
+    const $input = $this.closest('div').find('input');
     let value = parseInt($input.val());
     const $addToCartBtn = $(this).siblings("button")[1];
     $($addToCartBtn).attr('disabled', false)
-
     if (value <= 100) {
       value = value + 1;
     } else {
@@ -98,5 +94,6 @@ $(document).ready(() =>{
   });
 
   loadMenuItems();
+  updateCart();
 
 });
