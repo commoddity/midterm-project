@@ -16,5 +16,8 @@ const updateQuantity = () => {
     let storageKey = window.localStorage.key(i);
     let storageValue = window.localStorage.getItem(storageKey);
     $(`[data-value='${storageKey}']`).find('.item-num').val(storageValue);
+    const itemQtyField = $(`[data-value='${storageKey}']`).find('.item-num').val();
+    const addToCartBtn = $(`[data-value='${storageKey}']`).find('.add-to-cart');
+    (itemQtyField) ? $(addToCartBtn).attr("disabled", false) : $(addToCartBtn).attr("disabled", true); 
   }
 };
