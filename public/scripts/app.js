@@ -42,6 +42,9 @@ $(document).ready(() =>{
       <span class="quantity">Qty: ${quantity}</span>
       <span class="Item">${name}</span>
       <span class="price">Total: $${totalPrice}.00</span>
+      <div>
+
+      </div>
     </div>
     `
     return {orderItem, totalPrice}
@@ -99,10 +102,10 @@ $(document).ready(() =>{
   // Click Handlers for Menu Items
   $(document).on("click", ".add-to-cart", function() {
     const $this = $(this);
-    const $input = $this.closest('div.quantity').find("input");
     const $id = $this.closest('div.quantity').data("value");
-    const quantity = parseInt($input.val());
-    JSON.stringify(localStorage.setItem($id, quantity));
+    const $input = $this.closest('div').find("input");
+    let quantity = parseInt($input.val());
+    quantity === 0 ? window.localStorage.removeItem($id) : JSON.stringify(localStorage.setItem($id, quantity));
     updateCart();
     renderOrderItems(localStorage);
     $('.order-container:hidden')
@@ -113,45 +116,45 @@ $(document).ready(() =>{
     const $this = $(this);
     const $id = $this.closest('div.quantity').data("value");
     const $input = $this.closest('div').find('input');
-    let value = parseInt($input.val());
+    let quantity = parseInt($input.val());
     window.localStorage.removeItem($id);
     updateCart();
     renderOrderItems(localStorage);
-    value = 0;
-    $input.val(value);
+    quantity = 0;
+    $input.val(quantity);
   });
 
   $(document).on('click', '.minus-btn', function(event) {
     event.preventDefault();
     const $this = $(this);
     const $input = $this.closest('div').find('input');
-    let value = parseInt($input.val());
+    let quantity = parseInt($input.val());
     const $addToCartBtn = $(this).siblings("button")[1];
     const $RemoveFromCartBtn = $(this).siblings("button")[2];
-    if (value >= 1) {
+    if (quantity >= 1) {
       $($addToCartBtn).text(`Update Cart`);
-      value--;
-      if (value === 0) {
+      quantity--;
+      if (quantity === 0) {
         $($addToCartBtn).text(`Update Cart`);
         $($RemoveFromCartBtn).attr('disabled', true)
       }
     }
-  $input.val(value);
+  $input.val(quantity);
   });
 
   $(document).on('click', '.plus-btn', function(event) {
     event.preventDefault();
     const $this = $(this);
     const $input = $this.closest('div').find('input');
-    let value = parseInt($input.val());
+    let quantity = parseInt($input.val());
     const $addToCartBtn = $(this).siblings("button")[1];
     const $RemoveFromCartBtn = $(this).siblings("button")[2];
     $($addToCartBtn).attr('disabled', false)
     $($RemoveFromCartBtn).attr('disabled', false)
-    if (value <= 100) {
-      value++;
+    if (quantity <= 100) {
+      quantity++;
     }
-  $input.val(value);
+  $input.val(quantity);
   });
 
   //Click Handler for Order
