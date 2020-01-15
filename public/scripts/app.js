@@ -131,6 +131,14 @@ $(document).ready(() =>{
     .animate({width: 'toggle'});
   });
 
+  $(window).bind("beforeunload", function() {
+    return confirm("Your cart will be lost if you leave this page. Are you sure you want to leave?");
+  });
+
+  $(window).on("unload", function() {
+    localStorage.clear();
+  });
+
   loadMenuItems();
   updateCart();
   $('.order-container').hide();
