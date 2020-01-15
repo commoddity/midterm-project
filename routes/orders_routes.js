@@ -10,11 +10,8 @@ module.exports = (ordersService) => {
 
   router.post("/checkout", (req, res) => {
     const orderData = req.body;
-    ordersService.postOrder()
-    .then(res => {
-      ordersService.postOrderItems(orderData);
-    })
-    .catch(e => console.error(e))
+    // console.log(orderData);
+    ordersService.postOrders(orderData)
   })
 
   return router

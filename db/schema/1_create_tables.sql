@@ -43,9 +43,10 @@ CREATE TABLE orders (
 );
 
 CREATE TABLE order_items (
+  id SERIAL PRIMARY KEY NOT NULL,
   menu_item_id INTEGER REFERENCES menu_items(id) ON DELETE CASCADE,
   order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE
-  -- PRIMARY KEY (menu_item_id, order_id)
+  -- id SERIAL PRIMARY KEY (menu_item_id, order_id)
 );
 
 GRANT ALL PRIVILEGES ON TABLE users TO labber;
