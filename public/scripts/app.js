@@ -2,17 +2,18 @@ const { helpers } = ('./helpers.js')
 
 $(document).ready(() =>{
 
+  let globalData;
+
 // Menu Creation Functions
-  const createMenuItem = function (dataObj) {
-    const menuItem =
-    `
+  const createMenuItem = function (data) {
+    const menuItem = `
       <div class="menu-item">
         <div class="card">
-          <img class="menu-item-image" src="${dataObj.image_url}" alt="Card image cap">
+          <img class="menu-item-image" src="${data.image_url}" alt="Card image cap">
           <div class="item-body">
-            <span class="item-text">${dataObj.name}</span>
-            <span class="item-price">$${dataObj.price}.00</span>
-            <div class="quantity" data-value="${dataObj.id}">
+            <span class="item-text">${data.name}</span>
+            <span class="item-price">$${data.price}.00</span>
+            <div class="quantity" data-value="${data.id}">
               <button class="plus-btn" type="button" name="button">
               <img class="plus" src="../img/plus.png" alt="" />
               </button>
@@ -29,13 +30,42 @@ $(document).ready(() =>{
     return menuItem;
   };
 
-  const renderMenuItems = (dataArr) => {
-    const menuContainer = $(`.menu-container`);
-    menuContainer.empty();
-    dataArr.forEach(dataObj => {
-      const menuItem = createMenuItem(dataObj);
-      menuContainer.append(menuItem)
+  const createOrderItem = function (k) {
+    const quantity = window.localStorage.getItem(k);
+    const name = globalData.find(e => e.id == k).name;
+    const price = globalData.find(e => e.id == k).price;
+    const totalPrice = (price * quantity);
+    const orderItem = `
+    <div class="each-item">
+      <span class="quantity">Qty: ${quantity}</span>
+      <span class="Item">${name}</span>
+      <span class="price">Total: $${totalPrice}.00</span>
+    </div>
+    `
+    // return orderItem;
+    return {orderItem, totalPrice}
+  };
+
+  const renderMenuItems = (data) => {
+    const domContainer = $(`.menu-container`);
+    domContainer.empty();
+    data.forEach(index => {
+      const menuItem = createMenuItem(index);
+      domContainer.append(menuItem)
     });
+  };
+
+  const renderOrderItems = (locStore) => {
+    const domContainer = $('.order-items');
+    domContainer.empty();
+    let orderTotal = 0;
+    for (let i = 0; i < locStore.length; i++) {
+      const k = JSON.parse(locStore.key(i));
+      const menuItem = createOrderItem(k);
+      domContainer.append(menuItem.orderItem)
+      orderTotal += menuItem.totalPrice;
+    }
+    $('#order-total').html(orderTotal);
   };
 
   const loadMenuItems = () => {
@@ -46,14 +76,15 @@ $(document).ready(() =>{
       method: request_method
     })
     .done((result) => {
-      const data = result.data;
-      renderMenuItems(data);
+      globalData = result.data;
+      renderMenuItems(globalData);
       updateQuantity();
+      console.log(globalData);
     })
     .catch(e => console.error(e));
   };
 
-  // Click Handlers for Item Quantities
+  // Click Handlers for Menu Items
   $(document).on("click", ".add-to-cart", function() {
     const $this = $(this);
     const $input = $this.closest('div.quantity').find("input");
@@ -61,6 +92,9 @@ $(document).ready(() =>{
     const quantity = parseInt($input.val());
     JSON.stringify(localStorage.setItem($id, quantity));
     updateCart();
+    renderOrderItems(localStorage);
+    $('.order-container:hidden')
+    .animate({width: 'toggle'});
   });
 
   $(document).on('click', '.minus-btn', function(event) {
@@ -73,7 +107,6 @@ $(document).ready(() =>{
       $($addToCartBtn).text(`Update Cart`);
       value = value - 1;
       if (value === 0) {
-        // $($addToCartBtn).attr('disabled', true);
         $($addToCartBtn).text(`Update Cart`);
       }
     }
@@ -89,14 +122,26 @@ $(document).ready(() =>{
     $($addToCartBtn).attr('disabled', false)
     if (value <= 100) {
       value = value + 1;
-    } else if(value === 0){
-      // $($addToCartBtn).attr('disabled', true);
-      // value = 100;
     }
   $input.val(value);
   });
 
+  //Click Handler for Order
+  $(document).on('click', '.hide-cart', function(event) {
+    event.preventDefault();
+    $('.order-container')
+    .animate({width: 'toggle'});
+    // .animate({
+    //   width: '0%',
+    //   opacity: 0
+    //   }, 500)
+    // .hide();
+  });
+
+
+
   loadMenuItems();
   updateCart();
+  $('.order-container').hide();
 
 });
