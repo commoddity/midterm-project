@@ -20,9 +20,7 @@ module.exports = (db) => {
       .then(() => {
         db.query(idQuery)
         .then((lastOrder) => {
-          // const lastOrderId = data.rows.length ? data.rows[data.rows.length - 1].id : null;
           for (let i = 0; i < orderEntries.length; i++) {
-            console.log(lastOrder.rows[0].id);
             const values = [Number(orderEntries[i][0]), lastOrder.rows[0].id, Number(orderEntries[i][1])];
             db.query(orderItemsQueryString, values)
             .then(() => console.log(`Item ID: ${values[0]}\nOrder ID: ${values[1]}\nQuantity: ${values[2]}`))

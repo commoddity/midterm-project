@@ -149,7 +149,17 @@ $(document).ready(() =>{
   });
 
   $(window).on("unload", function() {
-    localStorage.clear();
+    window.localStorage.clear();
+  });
+
+  $(".empty-cart").on('click', function(){
+    if (confirm("Are you sure?")) {
+      window.localStorage.clear();
+      $('.order-items').empty();
+      $('#order-total').text('0');
+    } else {
+      return false;
+    };
   });
 
   loadMenuItems();
