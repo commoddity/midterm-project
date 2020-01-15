@@ -21,17 +21,5 @@ const updateQuantity = () => {
     const itemQtyField = Number($(`[data-value='${storageKey}']`).find('.item-num').val());
     const addToCartBtn = $(`[data-value='${storageKey}']`).find('.add-to-cart');
     (itemQtyField) ? $(addToCartBtn).attr("disabled", false) : $(addToCartBtn).attr("disabled", true);
-    // console.log((itemQtyField))
   }
 };
-
-const getOrderTotal = () => {
-  let totalPrice = 0;
-  for (let i = 0; i < window.localStorage.length; i++) {
-    let storageKey = window.localStorage.key(i);
-    let storageValue = window.localStorage.getItem(storageKey);
-    const price = $('.price').val();
-    // totalPrice +=
-  }
-
-}

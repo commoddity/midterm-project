@@ -30,10 +30,10 @@ $(document).ready(() =>{
     return menuItem;
   };
 
-  const createOrderItem = function (k) {
-    const quantity = window.localStorage.getItem(k);
-    const name = globalData.find(e => e.id == k).name;
-    const price = globalData.find(e => e.id == k).price;
+  const createOrderItem = function (localKey) {
+    const quantity = window.localStorage.getItem(localKey);
+    const name = globalData.find(e => e.id == localKey).name;
+    const price = globalData.find(e => e.id == localKey).price;
     const totalPrice = (price * quantity);
     const orderItem = `
     <div class="each-item">
@@ -42,7 +42,6 @@ $(document).ready(() =>{
       <span class="price">Total: $${totalPrice}.00</span>
     </div>
     `
-    // return orderItem;
     return {orderItem, totalPrice}
   };
 
@@ -60,8 +59,8 @@ $(document).ready(() =>{
     domContainer.empty();
     let orderTotal = 0;
     for (let i = 0; i < locStore.length; i++) {
-      const k = JSON.parse(locStore.key(i));
-      const menuItem = createOrderItem(k);
+      const localKey = JSON.parse(locStore.key(i));
+      const menuItem = createOrderItem(localKey);
       domContainer.append(menuItem.orderItem)
       orderTotal += menuItem.totalPrice;
     }
@@ -79,7 +78,6 @@ $(document).ready(() =>{
       globalData = result.data;
       renderMenuItems(globalData);
       updateQuantity();
-      console.log(globalData);
     })
     .catch(e => console.error(e));
   };
@@ -131,14 +129,7 @@ $(document).ready(() =>{
     event.preventDefault();
     $('.order-container')
     .animate({width: 'toggle'});
-    // .animate({
-    //   width: '0%',
-    //   opacity: 0
-    //   }, 500)
-    // .hide();
   });
-
-
 
   loadMenuItems();
   updateCart();
