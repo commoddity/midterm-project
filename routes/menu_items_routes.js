@@ -11,7 +11,7 @@ module.exports = (menuItemsService) => {
   })
 
   router.get("/menu", (req, res) => {
-    menuItemsService.getMenuItems()  // --> RETURNS THE PROMISE OF DB QUERY
+    menuItemsService.getMenuItems()
     .then(result => {
       const data = result;
       res.json({data});

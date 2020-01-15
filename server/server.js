@@ -34,14 +34,13 @@ app.use(sass({
 
 app.use(express.static("public"));
 
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("../routes/users");
 const widgetsRoutes = require("../routes/widgets");
 const menuRoutes = require("../routes/menu_items_routes");
 const orderRoutes = require("../routes/orders_routes");
-
-// const helpers = require('../public/scripts/helpers')
 
 //Menu Items Layers
 const menuItemsRepositoryFactory = require("../repository/menu_items_repository");
@@ -56,6 +55,7 @@ const ordersServiceFactory = require("../service/orders_service");
 
 const ordersRepository = ordersRepositoryFactory(db)
 const ordersService = ordersServiceFactory(ordersRepository)
+
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own

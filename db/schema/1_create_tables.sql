@@ -43,10 +43,9 @@ CREATE TABLE orders (
 );
 
 CREATE TABLE order_items (
-  id SERIAL PRIMARY KEY NOT NULL,
   menu_item_id INTEGER REFERENCES menu_items(id) ON DELETE CASCADE,
-  order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE
-  -- id SERIAL PRIMARY KEY (menu_item_id, order_id)
+  order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
+  quantity INTEGER
 );
 
 GRANT ALL PRIVILEGES ON TABLE users TO labber;
@@ -59,4 +58,3 @@ GRANT ALL ON SEQUENCE users_id_seq TO labber;
 GRANT ALL ON SEQUENCE restaurants_id_seq TO labber;
 GRANT ALL ON SEQUENCE menu_items_id_seq TO labber;
 GRANT ALL ON SEQUENCE orders_id_seq TO labber;
-GRANT ALL ON SEQUENCE order_items_id_seq TO labber;

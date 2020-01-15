@@ -10,11 +10,8 @@ module.exports = (ordersService) => {
 
   router.post("/checkout", (req, res) => {
     const orderData = req.body;
-    // console.log(orderData);
     ordersService.postOrders(orderData)
   })
 
   return router
 };
-
-// ordersService.postOrder IS NOT A FUNCTION ?!?!?! Y THO ?!

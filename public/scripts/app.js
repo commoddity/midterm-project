@@ -30,6 +30,7 @@ $(document).ready(() =>{
     return menuItem;
   };
 
+
   const createOrderItem = function (localKey) {
     const quantity = window.localStorage.getItem(localKey);
     const name = globalData.find(e => e.id == localKey).name;
@@ -91,10 +92,6 @@ $(document).ready(() =>{
       method: request_method,
       data: checkoutCart
     })
-    // .done((result) => {
-    //   console.log(data);
-    //   result.data;
-    // })
     .catch(e => console.error(e));
   };
 
