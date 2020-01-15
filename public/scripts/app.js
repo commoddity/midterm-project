@@ -82,6 +82,22 @@ $(document).ready(() =>{
     .catch(e => console.error(e));
   };
 
+  const checkoutOrder = () => {
+    const post_url = '/checkout';
+    const request_method = 'POST';
+    const checkoutCart = getPropertiesFromLocalStorage();
+    $.ajax({
+      url: post_url,
+      method: request_method,
+      data: checkoutCart
+    })
+    // .done((result) => {
+    //   console.log(data);
+    //   result.data;
+    // })
+    .catch(e => console.error(e));
+  };
+
   // Click Handlers for Menu Items
   $(document).on("click", ".add-to-cart", function() {
     const $this = $(this);
@@ -143,4 +159,9 @@ $(document).ready(() =>{
   updateCart();
   $('.order-container').hide();
 
+  $(document).on('click', '.checkout', function(event) {
+    checkoutOrder();
+  })
+
 });
+

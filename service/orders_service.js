@@ -1,7 +1,7 @@
 module.exports = (ordersRepository) => {
   return {
-    getOrders: () => {
-      return ordersRepository.getOrders()
+    postOrders: () => {
+      return ordersRepository.postOrders()
     }
   }
 };

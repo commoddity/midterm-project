@@ -15,6 +15,6 @@ VALUES (1, 'Eggs Benny', 10, 'https://live.staticflickr.com/8864/18137445236_5d0
 (1, 'Huevos Rancheros', 9, 'https://live.staticflickr.com/4184/34512229055_0d9a81647d_b.jpg'),
 (1, 'Pancakes', 7, 'https://live.staticflickr.com/65535/48305311782_35aae64b6b_b.jpg');
 
-INSERT INTO orders (restaurant_id, user_id)
-VALUES (1, 1),
-(1, 1);
+-- INSERT INTO orders (restaurant_id, user_id)
+-- VALUES (1, 1),
+-- (1, 1);

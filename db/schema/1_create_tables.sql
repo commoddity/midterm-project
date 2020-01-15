@@ -44,8 +44,18 @@ CREATE TABLE orders (
 
 CREATE TABLE order_items (
   menu_item_id INTEGER REFERENCES menu_items(id) ON DELETE CASCADE,
-  order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
-  PRIMARY KEY (menu_item_id, order_id)
+  order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE
+  -- PRIMARY KEY (menu_item_id, order_id)
 );
 
+GRANT ALL PRIVILEGES ON TABLE users TO labber;
+GRANT ALL PRIVILEGES ON TABLE restaurants TO labber;
+GRANT ALL PRIVILEGES ON TABLE menu_items TO labber;
+GRANT ALL PRIVILEGES ON TABLE orders TO labber;
+GRANT ALL PRIVILEGES ON TABLE order_items TO labber;
 
+GRANT ALL ON SEQUENCE users_id_seq TO labber;
+GRANT ALL ON SEQUENCE restaurants_id_seq TO labber;
+GRANT ALL ON SEQUENCE menu_items_id_seq TO labber;
+GRANT ALL ON SEQUENCE orders_id_seq TO labber;
+GRANT ALL ON SEQUENCE order_items_id_seq TO labber;

@@ -8,14 +8,16 @@ module.exports = (ordersService) => {
     res.render("index");
   })
 
-  router.get("/menu", (req, res) => {
-    ordersService.getOrders()
-    .then(result => {
-      const data = result;
-      res.json({data});
+  router.post("/checkout", (req, res) => {
+    const orderData = req.body;
+    ordersService.postOrder()
+    .then(res => {
+      ordersService.postOrderItems(orderData);
     })
     .catch(e => console.error(e))
   })
 
   return router
 };
+
+// ordersService.postOrder IS NOT A FUNCTION ?!?!?! Y THO ?!

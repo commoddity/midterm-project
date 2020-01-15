@@ -8,6 +8,7 @@
 
 .menu-item {
   display: grid;
+  justify-self: center;
   width: 330px;
 }
 

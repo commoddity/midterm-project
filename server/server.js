@@ -73,5 +73,5 @@ app.use("/", orderRoutes(ordersService));
 // });
 //app.get("/menuitems", (req,res) =>{res.send('Welcome!')})
 app.listen(PORT, HOST, () => {
-  console.log(`Example app listening on port ${PORT}`);
+  console.log(`Example app listening on port ${PORT}\nWelcome to Buns on Broadway!`);
 });
