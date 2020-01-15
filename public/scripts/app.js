@@ -15,11 +15,11 @@ $(document).ready(() =>{
             <span class="item-price">$${data.price}.00</span>
             <div class="quantity" data-value="${data.id}">
               <button class="plus-btn" type="button" name="button">
-              <img class="plus" src="../img/plus.png" alt="" />
+                <img class="plus" src="../img/plus.png" alt="" />
               </button>
               <input class="item-num" type="text" name="name" value="0">
               <button class="minus-btn" type="button" name="button">
-              <img class="minus" src="../img/minus.png" alt="" />
+                <img class="minus" src="../img/minus.png" alt="" />
               </button>
               <button class="add-to-cart" disabled>Add to Cart</button>
               <button class="remove-from-cart" disabled>Remove from Cart</button>
@@ -31,20 +31,20 @@ $(document).ready(() =>{
     return menuItem;
   };
 
-
   const createOrderItem = function (localKey) {
     const quantity = window.localStorage.getItem(localKey);
     const name = globalData.find(e => e.id == localKey).name;
     const price = globalData.find(e => e.id == localKey).price;
+    const id = globalData.find(e => e.id == localKey).id;
     const totalPrice = (price * quantity);
     const orderItem = `
-    <div class="each-item">
+    <div class="each-item" data-value="${id}">
       <span class="quantity">Qty: ${quantity}</span>
       <span class="Item">${name}</span>
       <span class="price">Total: $${totalPrice}.00</span>
-      <div>
-
-      </div>
+        <button class="delete-from-cart">
+          <img class="delete-button" src="../img/delete.png" alt="" />
+        </button>
     </div>
     `
     return {orderItem, totalPrice}
@@ -116,6 +116,20 @@ $(document).ready(() =>{
     const $this = $(this);
     const $id = $this.closest('div.quantity').data("value");
     const $input = $this.closest('div').find('input');
+    let quantity = parseInt($input.val());
+    window.localStorage.removeItem($id);
+    updateCart();
+    renderOrderItems(localStorage);
+    quantity = 0;
+    $input.val(quantity);
+  });
+
+  $(document).on("click", ".delete-from-cart", function() {
+    const $this = $(this);
+    console.log(this);
+    const $id = $this.closest('div.each-item').data("value");
+    console.log($id);
+    const $input = $this.closest('div.quantity').find(`[data-value='${$id}']`);
     let quantity = parseInt($input.val());
     window.localStorage.removeItem($id);
     updateCart();
