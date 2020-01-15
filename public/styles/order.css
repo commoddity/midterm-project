@@ -1,0 +1,68 @@
+.order-container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  text-align: right;
+  position: fixed;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 5px solid black;
+  opacity: 0.9;
+  top: 10%;
+  right: 0px;
+  z-index: 5;
+  height: 85%;
+  width: 50%;
+}
+
+.order-container h1 {
+  text-align:center;
+  align-self: center;
+  color: black;
+  width: 90%;
+}
+
+.order-items {
+  display: grid;
+  margin: 0 auto;
+  border-bottom: 2px dashed black;
+  width: 90%;
+  padding-bottom: 10px;
+}
+
+.each-item {
+  display: grid;
+  justify-items: left;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-gap: 10px;
+}
+
+/* .quantity {
+  justify-self: left;
+}
+
+.item {
+  justify-self: left;
+}
+
+.price {
+  justify-self: left;
+} */
+
+.order-total {
+  align-self: center;
+  width: 90%;
+  padding-top: 10px;
+}
+
+.checkout-div {
+  display: flex;
+  align-self: center;
+  width: 90%;
+  justify-content: space-between;
+}
+
+.checkout-div p {
+  margin-right: 10px;
+
+}
