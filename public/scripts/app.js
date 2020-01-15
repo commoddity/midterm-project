@@ -22,6 +22,7 @@ $(document).ready(() =>{
               <img class="minus" src="../img/minus.png" alt="" />
               </button>
               <button class="add-to-cart" disabled>Add to Cart</button>
+              <button class="remove-from-cart" disabled>Remove from Cart</button>
             </div>
           </div>
         </div>
@@ -108,17 +109,31 @@ $(document).ready(() =>{
     .animate({width: 'toggle'});
   });
 
+  $(document).on("click", ".remove-from-cart", function() {
+    const $this = $(this);
+    const $id = $this.closest('div.quantity').data("value");
+    const $input = $this.closest('div').find('input');
+    let value = parseInt($input.val());
+    window.localStorage.removeItem($id);
+    updateCart();
+    renderOrderItems(localStorage);
+    value = 0;
+    $input.val(value);
+  });
+
   $(document).on('click', '.minus-btn', function(event) {
     event.preventDefault();
     const $this = $(this);
     const $input = $this.closest('div').find('input');
     let value = parseInt($input.val());
     const $addToCartBtn = $(this).siblings("button")[1];
+    const $RemoveFromCartBtn = $(this).siblings("button")[2];
     if (value >= 1) {
       $($addToCartBtn).text(`Update Cart`);
-      value = value - 1;
+      value--;
       if (value === 0) {
         $($addToCartBtn).text(`Update Cart`);
+        $($RemoveFromCartBtn).attr('disabled', true)
       }
     }
   $input.val(value);
@@ -130,9 +145,11 @@ $(document).ready(() =>{
     const $input = $this.closest('div').find('input');
     let value = parseInt($input.val());
     const $addToCartBtn = $(this).siblings("button")[1];
+    const $RemoveFromCartBtn = $(this).siblings("button")[2];
     $($addToCartBtn).attr('disabled', false)
+    $($RemoveFromCartBtn).attr('disabled', false)
     if (value <= 100) {
-      value = value + 1;
+      value++;
     }
   $input.val(value);
   });
