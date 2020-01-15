@@ -54,12 +54,12 @@ $(document).ready(() =>{
     });
   };
 
-  const renderOrderItems = (locStore) => {
+  const renderOrderItems = (locStor) => {
     const domContainer = $('.order-items');
     domContainer.empty();
     let orderTotal = 0;
-    for (let i = 0; i < locStore.length; i++) {
-      const localKey = JSON.parse(locStore.key(i));
+    for (let i = 0; i < locStor.length; i++) {
+      const localKey = JSON.parse(locStor.key(i));
       const menuItem = createOrderItem(localKey);
       domContainer.append(menuItem.orderItem)
       orderTotal += menuItem.totalPrice;
