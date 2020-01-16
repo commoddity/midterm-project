@@ -4,6 +4,7 @@ $(document).ready(() =>{
 
   let globalData;
 
+
 // Menu Creation Functions
   const createMenuItem = function (data) {
     const menuItem = `
@@ -46,7 +47,7 @@ $(document).ready(() =>{
         <img class="delete-button" src="../img/delete.png" alt="" />
       </button>
     </div>
-    
+
     `
     return {orderItem, totalPrice}
   };
@@ -72,6 +73,7 @@ $(document).ready(() =>{
     }
     $('#order-total').html(orderTotal);
   };
+
 
 // AJAX Calls
   const loadMenuItems = () => {
