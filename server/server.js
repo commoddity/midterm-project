@@ -20,6 +20,15 @@ app.use(morgan('dev'));
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('../lib/db.js');
+const twilioParams = require('../lib/twilioParams');
+
+// const twilioClient = require('twilio')(twilioParams.accountSid, twilioParams.authToken);
+// twilioClient.messages.create({
+//   to: `+17788822481`,
+//   from: twilioParams.fromPhone,
+//   body: `I am sending you from the servre`
+// }).then((message) => console.log(message)).catch(e => console.error(e))
+
 const db = new Pool(dbParams);
 db.connect();
 
@@ -41,6 +50,7 @@ const usersRoutes = require("../routes/users");
 const widgetsRoutes = require("../routes/widgets");
 const menuRoutes = require("../routes/menu_items_routes");
 const orderRoutes = require("../routes/orders_routes");
+const twilioRoutes = require("../routes/twilioRoutes");
 
 //Menu Items Layers
 const menuItemsRepositoryFactory = require("../repository/menu_items_repository");
@@ -56,6 +66,12 @@ const ordersServiceFactory = require("../service/orders_service");
 const ordersRepository = ordersRepositoryFactory(db)
 const ordersService = ordersServiceFactory(ordersRepository)
 
+//Twilio Layers
+const twilioRepositoryFactory = require("../repository/twiliorepository");
+const twilioServiceFactory = require("../service/twilio_service");
+
+const twilioRepository = twilioRepositoryFactory(twilioParams);
+const twilioService = twilioServiceFactory(twilioRepository);
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -64,6 +80,8 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 app.use("/", menuRoutes(menuItemsService));
 app.use("/", orderRoutes(ordersService));
+
+app.use("/", twilioRoutes(twilioService));
 
 // Home page
 // Warning: avoid creating more routes in this file!

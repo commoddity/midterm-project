@@ -46,6 +46,7 @@ $(document).ready(() =>{
         <img class="delete-button" src="../img/delete.png" alt="" />
       </button>
     </div>
+    <div><input id='sendSms' type='submit' value='Send SMS'></input></div>
     `
     return {orderItem, totalPrice}
   };
@@ -72,6 +73,7 @@ $(document).ready(() =>{
     $('#order-total').html(orderTotal);
   };
 
+// AJAX Calls
   const loadMenuItems = () => {
     const get_url = `/menu`;
     const request_method = `GET`;
@@ -98,6 +100,17 @@ $(document).ready(() =>{
     })
     .catch(e => console.error(e));
   };
+
+// Twilio AJAX Calls
+  const sendSms = () => {
+    const post_url = `/send`;
+    const request_method = `POST`;
+    $.ajax({
+      url: post_url,
+      method: request_method
+    })
+    .catch(e => console.error(e));
+  }
 
 // Click Handlers for Menu Items
   $(document).on("click", ".add-to-cart", function() {
@@ -206,6 +219,11 @@ $(document).ready(() =>{
 
   $(document).on('click', '.checkout', function(event) {
     checkoutOrder();
+  })
+
+  $(document).on('click', '#sendSms', function(event) {
+    console.log('sendSMS button is clicked!')
+    sendSms();
   })
 
 });
