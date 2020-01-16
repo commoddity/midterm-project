@@ -8,15 +8,14 @@
 //   })
 // }
 
-
 module.exports = (twilioParams) => {
   return {
     sendMessage: (messageData) => {
       const twilioClient = require('twilio')(twilioParams.accountSid, twilioParams.authToken);
       return twilioClient.messages.create({
-        body: `Hi`,
+        body: `Hi, you are a butt.`,
         from: twilioParams.fromPhone,
-        to: `+17788822481`
+        to: `+17789600255`
       })
       .then((message) => console.log(message.sid))
       .catch(e => console.error(e))

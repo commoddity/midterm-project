@@ -54,8 +54,8 @@ $(document).ready(() =>{
   const renderMenuItems = (data) => {
     const domContainer = $(`.menu-container`);
     domContainer.empty();
-    data.forEach(index => {
-      const menuItem = createMenuItem(index);
+    data.forEach(item => {
+      const menuItem = createMenuItem(item);
       domContainer.append(menuItem)
     });
   };
@@ -101,6 +101,7 @@ $(document).ready(() =>{
     .catch(e => console.error(e));
   };
 
+
 // Twilio AJAX Calls
   const sendSms = () => {
     const post_url = `/send`;
@@ -111,6 +112,7 @@ $(document).ready(() =>{
     })
     .catch(e => console.error(e));
   }
+
 
 // Click Handlers for Menu Items
   $(document).on("click", ".add-to-cart", function() {
@@ -171,6 +173,7 @@ $(document).ready(() =>{
     }
   $input.val($quantity);
   });
+
 
 //Click Handlers for Order
   $(document).on('click', '.hide-cart', function(event) {
