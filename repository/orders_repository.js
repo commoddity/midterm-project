@@ -29,7 +29,6 @@ module.exports = function (db) {
       `
       return this.getLatestOrderId()
       .then((lastOrder) => {
-        console.log("LASTORDER->", lastOrder)
         for (let i = 0; i < orderEntries.length; i++) {
           const values = [Number(orderEntries[i][0]), lastOrder, Number(orderEntries[i][1])];
           db.query(orderItemsQueryString, values)
@@ -39,7 +38,7 @@ module.exports = function (db) {
       .catch(e => console.error(e));
     },
 
-    getOrder: async function () {
+    getOrder: function () {
       const ordersQueryString = `
       SELECT order_id, menu_items.name AS name, menu_items.price AS price, quantity, orders.time_placed AS time_placed
       FROM order_items
@@ -50,7 +49,6 @@ module.exports = function (db) {
       return this.getLatestOrderId()
       .then((lastOrder) => {
         values = [lastOrder];
-        console.log("VALUES", values)
         db.query(ordersQueryString, values)
         .then((res) => {
         console.log("RES.ROWS ->", res.rows);
@@ -58,6 +56,7 @@ module.exports = function (db) {
         })
         .catch(e => console.error(e));
       })
+      .catch(e => console.error(e));
     }
   };
 };
