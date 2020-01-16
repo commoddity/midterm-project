@@ -226,10 +226,32 @@ $(document).ready(() =>{
     checkoutOrder();
   })
 
-  $(document).on('click', '#sendSms', function(event) {
-    console.log('sendSMS button is clicked!')
-    sendSms();
-  })
+  // $(document).on('click', '#sendSms', function(event) {
+  //   console.log('sendSMS button is clicked!')
+  //   sendSms();
+  // })
+
+  $(".enter-phone-number-form").submit(function(event){
+    //GET DATA FROM INPUT
+    const phoneNumber = $(".enter-phone-input").val();
+    event.preventDefault();
+    if (phoneNumber.length === 0) {
+      const errorMessage = "YOU MUST INPUT YOU PHONE NUMBER!!"
+      //displayError(errorMessage);
+    } else {
+      const post_url = $(this).attr("action"); //get form action url. i.e.- the path
+      const request_method = $(this).attr("method"); //get form GET/POST method
+      const form_data = $(this).serialize(); //Encode form elements to string for submission
+      $.ajax({
+        url : post_url,
+        type: request_method,
+        data : form_data
+      }).done(function(data){
+        // DO SOMETHING AFTER THE POST
+        console.log(`success, ${data}`)
+        // loadMenuItems();
+      });
+    }
+  });
 
 });
-

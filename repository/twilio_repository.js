@@ -10,14 +10,14 @@
 
 module.exports = (twilioParams) => {
   return {
-    sendMessage: (messageData) => {
+    sendMessage: (messageBody, userPhoneNumber) => {
       const twilioClient = require('twilio')(twilioParams.accountSid, twilioParams.authToken);
       return twilioClient.messages.create({
         body: `Hi, you are a butt.`,
         from: twilioParams.fromPhone,
-        to: `+17789600255`
+        to: `${userPhoneNumber}`
       })
-      .then((message) => console.log(message.sid))
+      .then((message) => console.log(message.sid, {userPhoneNumber}))
       .catch(e => console.error(e))
     }
   };

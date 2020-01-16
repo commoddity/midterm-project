@@ -1,7 +1,7 @@
 module.exports = (twilioRepository) => {
   return {
-    sendMessage: (messageBody) => {
-      return twilioRepository.sendMessage(messageBody)
+    sendMessage: (messageBody, userPhoneNumber) => {
+      return twilioRepository.sendMessage(messageBody, userPhoneNumber)
     }
   }
 };
