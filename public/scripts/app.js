@@ -76,7 +76,8 @@ $(document).ready(() =>{
 
 
 // AJAX Calls
-  const loadMenuItems = () => {
+  const loadMenuItems = (event) => {
+    // event.preventDefault();
     const get_url = `/menu`;
     const request_method = `GET`;
     $.ajax({
@@ -91,7 +92,8 @@ $(document).ready(() =>{
     .catch(e => console.error(e));
   };
 
-  const checkoutOrder = () => {
+  const checkoutOrder = (event) => {
+    event.preventDefault();
     const post_url = '/checkout';
     const request_method = 'POST';
     const checkoutCart = getPropertiesFromLocalStorage();
@@ -100,12 +102,16 @@ $(document).ready(() =>{
       method: request_method,
       data: checkoutCart
     })
+    .then(() => {
+      window.location.assign('/checkout');
+    })
     .catch(e => console.error(e));
   };
 
 
 // Twilio AJAX Calls
-  const sendSms = () => {
+  const sendSms = (event) => {
+    // event.preventDefault();
     const post_url = `/send`;
     const request_method = `POST`;
     $.ajax({
@@ -197,6 +203,9 @@ $(document).ready(() =>{
       window.localStorage.clear();
       $('.order-items').empty();
       $('#order-total').text('0');
+      $('div.quantity').find('input').val('0');
+      $('.add-to-cart').attr('disabled', true);
+      $('.remove-from-cart').attr('disabled', true);
     } else {
       return false;
     };
@@ -219,7 +228,7 @@ $(document).ready(() =>{
   });
 
   $(document).on('click', '.checkout', function(event) {
-    checkoutOrder();
+    checkoutOrder(event);
     $('.enter-phone-number-form:hidden')
     .animate({width: 'toggle'});
   });

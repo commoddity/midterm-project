@@ -9,7 +9,7 @@ module.exports = function (db) {
       `
       await db.connect();
       const res = await db.query(idQuery);
-      console.log("LATESTORDERID", res.rows[0].id)
+      console.log("LATEST ORDER ID ->", res.rows[0].id)
       return res.rows[0].id;
     },
 
@@ -28,12 +28,15 @@ module.exports = function (db) {
       INSERT INTO order_items (menu_item_id, order_id, quantity)
       VALUES ($1, $2, $3);
       `
-      const lastOrder = await this.getLatestOrderId()
+      const lastOrder = await this.getLatestOrderId();
+      const promises = [];
       for (let i = 0; i < orderEntries.length; i++) {
         const values = [Number(orderEntries[i][0]), lastOrder, Number(orderEntries[i][1])];
-        db.query(orderItemsQueryString, values)
-        .catch(e => console.error(e));
-      }
+        promises.push(db.query(orderItemsQueryString, values));
+      };
+      Promise.all(promises)
+      .then((data) => data)
+      .catch(e => console.error(e));
     },
 
     getOrder: async function () {
@@ -47,14 +50,8 @@ module.exports = function (db) {
       `
       const id = await this.getLatestOrderId()
       const values = [id];
-      console.log("ID HERE ->", id)
-      console.log("VALUES HERE ->", values)
-      await db.query(ordersQueryString, values)
-      .then((res) => {
-      console.log("RES.ROWS ->", res.rows);
+      const res = await db.query(ordersQueryString, values);
       return res.rows;
-      })
-      .catch(e => console.error(e));
     }
   };
 };
