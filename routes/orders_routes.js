@@ -15,14 +15,8 @@ module.exports = (ordersService) => {
   });
 
   router.get("/checkout", (req, res) => {
-    console.log("REQ ->", req.body)
-    console.log("RES ->", res.body)
+    res.render("checkout")
     return ordersService.getOrder()
-    .then((res) => {
-      console.log("GET RESPONSE", res)
-      res.render("checkout")
-    })
-    .catch(e => console.error(e));
   });
 
   return router

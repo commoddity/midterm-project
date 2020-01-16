@@ -39,7 +39,7 @@ module.exports = function (db) {
       .catch(e => console.error(e));
     },
 
-    getOrder: function () {
+    getOrder: async function () {
       const ordersQueryString = `
       SELECT order_id, menu_items.name AS name, menu_items.price AS price, quantity, orders.time_placed AS time_placed
       FROM order_items
@@ -47,13 +47,17 @@ module.exports = function (db) {
       JOIN orders ON orders.id = order_id
       WHERE order_id = $1
       `
-      const values = [this.getLatestOrderId()];
-      db.query(ordersQueryString, values)
-      .then((res) => {
+      return this.getLatestOrderId()
+      .then((lastOrder) => {
+        values = [lastOrder];
+        console.log("VALUES", values)
+        db.query(ordersQueryString, values)
+        .then((res) => {
         console.log("RES.ROWS ->", res.rows);
         return res.rows;
+        })
+        .catch(e => console.error(e));
       })
-      .catch(e => console.error(e));
     }
   };
 };
