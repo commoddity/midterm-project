@@ -2,17 +2,11 @@ const express = require('express');
 
 const router = express.Router();
 
-module.exports = (ordersService) => {
+module.exports = (ordersService, db) => {
 
   // const asyncMiddleware = async (req, res, next) => {
-  //   console.log("PREVTODATA", ordersService.getOrder());
   //   const order = await ordersService.getOrder()
-  //   .then((res) => {
-  //     console.log("DATAHERE", res);
-  //     console.log("DATAJSON", res.json());
-  //     return res.json()
-  //   })
-  //   .catch((e) => console.error(e));
+  //   req.order = order;
   //   next();
   // };
 
@@ -25,18 +19,15 @@ module.exports = (ordersService) => {
   router.post("/checkout", (req, res) => {
     const orderData = req.body;
     ordersService.postOrders();
-    ordersService.postOrderItems(orderData);
+    ordersService.postOrderItems(orderData)
   });
 
-
-  //DATA STILL RETURNS UNDEFINED FOR SOME REASON?
-  router.get("/checkout", async (req, res) => {
-    const data = await ordersService.getOrder()
-          .then((data) => data)
-          .catch(e => console.error(e));
-          console.log("DATA", data);
-    return app.render(req, res, "/checkout", { data });
-  })
+  // DATA STILL RETURNS UNDEFINED FOR SOME REASON?
+  router.post("/order-placed", async (req, res) => {
+    const order = await ordersService.getOrder()
+    console.log("ORDER DATA ->", order)
+    res.render("./order-placed");
+  });
 
   // router.get(, asyncMiddleware, (req, res) => {
   //   console.log("REQ->", req.body)

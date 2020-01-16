@@ -113,7 +113,7 @@ $(document).ready(() =>{
       method: request_method
     })
     .catch(e => console.error(e));
-  }
+  };
 
 
 // Click Handlers for Menu Items
@@ -184,9 +184,9 @@ $(document).ready(() =>{
     .animate({width: 'toggle'});
   });
 
-  $(window).bind("beforeunload", function() {
-    return confirm("Your cart will be lost if you leave this page. Are you sure you want to leave?");
-  });
+  // $(window).bind("beforeunload", function() {
+  //   return confirm("Your cart will be lost if you leave this page. Are you sure you want to leave?");
+  // });
 
   $(window).on("unload", function() {
     window.localStorage.clear();
@@ -218,18 +218,21 @@ $(document).ready(() =>{
     $($removeFromCartBtn).attr('disabled', true)
   });
 
-  loadMenuItems();
-  updateCart();
-  $('.order-container').hide();
-
   $(document).on('click', '.checkout', function(event) {
     checkoutOrder();
-  })
+    $('.enter-phone-number-form:hidden')
+    .animate({width: 'toggle'});
+  });
 
   $(document).on('click', '#sendSms', function(event) {
     console.log('sendSMS button is clicked!')
     sendSms();
   })
+
+  $('.order-container').hide();
+  $('.enter-phone-number-form').hide();
+  loadMenuItems();
+  updateCart();
 
 });
 
