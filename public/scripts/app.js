@@ -42,6 +42,7 @@ $(document).ready(() =>{
       <span class="Item">${name}</span>
       <span class="price">Total: $${totalPrice}.00</span>
     </div>
+    <div><input id='sendSms' type='submit' value='Send SMS'></input></div>
     `
     return {orderItem, totalPrice}
   };
@@ -94,6 +95,16 @@ $(document).ready(() =>{
     })
     .catch(e => console.error(e));
   };
+
+  const sendSms = () => {
+    const post_url = `/send`;
+    const request_method = `POST`;
+    $.ajax({
+      url: post_url,
+      method: request_method
+    })
+    .catch(e => console.error(e));
+  }
 
   // Click Handlers for Menu Items
   $(document).on("click", ".add-to-cart", function() {
@@ -158,6 +169,11 @@ $(document).ready(() =>{
 
   $(document).on('click', '.checkout', function(event) {
     checkoutOrder();
+  })
+
+  $(document).on('click', '#sendSms', function(event) {
+    console.log('sendSMS button is clicked!')
+    sendSms();
   })
 
 });
