@@ -42,9 +42,9 @@ $(document).ready(() =>{
       <span class="quantity">Qty: ${quantity}</span>
       <span class="Item">${name}</span>
       <span class="price">Total: $${totalPrice}.00</span>
-        <button class="delete-from-cart">
-          <img class="delete-button" src="../img/delete.png" alt="" />
-        </button>
+      <button class="delete-from-cart">
+        <img class="delete-button" src="../img/delete.png" alt="" />
+      </button>
     </div>
     `
     return {orderItem, totalPrice}
@@ -99,13 +99,12 @@ $(document).ready(() =>{
     .catch(e => console.error(e));
   };
 
-  // Click Handlers for Menu Items
+// Click Handlers for Menu Items
   $(document).on("click", ".add-to-cart", function() {
-    const $this = $(this);
-    const $id = $this.closest('div.quantity').data("value");
-    const $input = $this.closest('div').find("input");
-    let quantity = parseInt($input.val());
-    quantity === 0 ? window.localStorage.removeItem($id) : JSON.stringify(localStorage.setItem($id, quantity));
+    const $id = $(this).closest('div.quantity').data("value");
+    const $input = $(this).closest('div').find('input');
+    let $quantity = parseInt($input.val());
+    $quantity === 0 ? window.localStorage.removeItem($id) : JSON.stringify(localStorage.setItem($id, $quantity));
     updateCart();
     renderOrderItems(localStorage);
     $('.order-container:hidden')
@@ -114,66 +113,55 @@ $(document).ready(() =>{
 
   $(document).on("click", ".remove-from-cart", function() {
     const $this = $(this);
-    const $id = $this.closest('div.quantity').data("value");
-    const $input = $this.closest('div').find('input');
-    let quantity = parseInt($input.val());
+    const $id = $(this).closest('div.quantity').data("value");
+    const $input = $(this).closest('div').find('input');
+    let $quantity = parseInt($input.val());
+    const $addToCartBtn = $(this).siblings(".add-to-cart");
     window.localStorage.removeItem($id);
     updateCart();
     renderOrderItems(localStorage);
-    quantity = 0;
-    $input.val(quantity);
-  });
-
-  $(document).on("click", ".delete-from-cart", function() {
-    const $this = $(this);
-    console.log(this);
-    const $id = $this.closest('div.each-item').data("value");
-    console.log($id);
-    const $input = $this.closest('div.quantity').find(`[data-value='${$id}']`);
-    let quantity = parseInt($input.val());
-    window.localStorage.removeItem($id);
-    updateCart();
-    renderOrderItems(localStorage);
-    quantity = 0;
-    $input.val(quantity);
+    $quantity = 0;
+    $($addToCartBtn).text(`Add to Cart`);
+    $($addToCartBtn).attr('disabled', true)
+    $input.val($quantity);
+    $this.attr('disabled', true);
   });
 
   $(document).on('click', '.minus-btn', function(event) {
-    event.preventDefault();
-    const $this = $(this);
-    const $input = $this.closest('div').find('input');
-    let quantity = parseInt($input.val());
-    const $addToCartBtn = $(this).siblings("button")[1];
-    const $RemoveFromCartBtn = $(this).siblings("button")[2];
-    if (quantity >= 1) {
-      $($addToCartBtn).text(`Update Cart`);
-      quantity--;
-      if (quantity === 0) {
-        $($addToCartBtn).text(`Update Cart`);
-        $($RemoveFromCartBtn).attr('disabled', true)
+    const $id = $(this).closest('div.quantity').data("value");
+    const $input = $(this).closest('div').find('input');
+    let $quantity = parseInt($input.val());
+    const $addToCartBtn = $(this).siblings(".add-to-cart");
+    const $removeFromCartBtn = $(this).siblings(".remove-from-cart");
+    if ($quantity >= 1) {
+      localStorage.getItem($id) && $($addToCartBtn).text(`Update Cart`);
+      $quantity--;
+      if ($quantity === 0) {
+        localStorage.getItem($id) && $($addToCartBtn).text(`Update Cart`);
+        $($removeFromCartBtn).attr('disabled', true)
       }
     }
-  $input.val(quantity);
+  $input.val($quantity);
   });
 
   $(document).on('click', '.plus-btn', function(event) {
-    event.preventDefault();
-    const $this = $(this);
-    const $input = $this.closest('div').find('input');
-    let quantity = parseInt($input.val());
-    const $addToCartBtn = $(this).siblings("button")[1];
-    const $RemoveFromCartBtn = $(this).siblings("button")[2];
+    const $id = $(this).closest('div.quantity').data("value");
+    const $input = $(this).closest('div').find('input');
+    let $quantity = parseInt($input.val());
+    const $addToCartBtn = $(this).siblings(".add-to-cart");
+    const $removeFromCartBtn = $(this).siblings(".remove-from-cart");
     $($addToCartBtn).attr('disabled', false)
-    $($RemoveFromCartBtn).attr('disabled', false)
-    if (quantity <= 100) {
-      quantity++;
+    $($removeFromCartBtn).attr('disabled', false)
+    localStorage.getItem($id) && $($addToCartBtn).text(`Update Cart`);
+    if ($quantity <= 100) {
+      $quantity++;
     }
-  $input.val(quantity);
+  $input.val($quantity);
   });
 
-  //Click Handler for Order
+//Click Handlers for Order
   $(document).on('click', '.hide-cart', function(event) {
-    event.preventDefault();
+
     $('.order-container')
     .animate({width: 'toggle'});
   });
@@ -194,6 +182,22 @@ $(document).ready(() =>{
     } else {
       return false;
     };
+  });
+
+  $(document).on("click", ".delete-from-cart", function() {
+    const $id = $(this).closest('div.each-item').data("value");
+    const $input = $(`div.quantity[data-value='${$id}']`).find('input');
+    const $addToCartBtn = $input.siblings('.add-to-cart');
+    const $removeFromCartBtn = $input.siblings('.remove-from-cart');
+    let $quantity = parseInt($input.val());
+    window.localStorage.removeItem($id);
+    updateCart();
+    renderOrderItems(localStorage);
+    $quantity = 0;
+    $input.val($quantity);
+    $($addToCartBtn).text(`Add to Cart`);
+    $($addToCartBtn).attr('disabled', true)
+    $($removeFromCartBtn).attr('disabled', true)
   });
 
   loadMenuItems();

@@ -1,3 +1,6 @@
+//Helper Functions
+
+//localStorage Functions
 const getSumOfLocalStorage = () => {
   let sum = 0;
   for (let i = 0; i < window.localStorage.length; i++) {
@@ -8,6 +11,17 @@ const getSumOfLocalStorage = () => {
   return sum;
 };
 
+const getPropertiesFromLocalStorage= () => {
+  let properties = {};
+  for (let i = 0; i < window.localStorage.length; i ++) {
+    const storageKey = window.localStorage.key(i);
+    const storageValue = window.localStorage.getItem(storageKey);
+    properties[storageKey] = storageValue;
+  }
+  return properties;
+};
+
+//Update Cart Functions
 const updateCart = () => {
   $(".qtyVal").html(getSumOfLocalStorage());
 };
@@ -24,12 +38,3 @@ const updateQuantity = () => {
   }
 };
 
-const getPropertiesFromLocalStorage= () => {
-  let properties = {};
-  for (let i = 0; i < window.localStorage.length; i ++) {
-    const storageKey = window.localStorage.key(i);
-    const storageValue = window.localStorage.getItem(storageKey);
-    properties[storageKey] = storageValue;
-  }
-  return properties;
-};
