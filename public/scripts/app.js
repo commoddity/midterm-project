@@ -46,7 +46,7 @@ $(document).ready(() =>{
         <img class="delete-button" src="../img/delete.png" alt="" />
       </button>
     </div>
-    <div><input id='sendSms' type='submit' value='Send SMS'></input></div>
+    
     `
     return {orderItem, totalPrice}
   };
