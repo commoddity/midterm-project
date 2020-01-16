@@ -13,7 +13,7 @@ module.exports = (twilioParams) => {
     sendMessage: (messageBody, userPhoneNumber) => {
       const twilioClient = require('twilio')(twilioParams.accountSid, twilioParams.authToken);
       return twilioClient.messages.create({
-        body: `Hi, you are a butt.`,
+        body: `Your order has been received.`,
         from: twilioParams.fromPhone,
         to: `${userPhoneNumber}`
       })

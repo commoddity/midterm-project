@@ -15,19 +15,19 @@
     <button class="hide-cart">Hide Cart</button>
     <div>
       <button class="empty-cart">Empty Cart</button>
-      <form method="GET" action="/checkout">
+      <form action="/checkout" method="POST">
         <button type="submit" class="checkout">Checkout</button>
       </form>
     </div>
   </div>
 
-  <div>
-    <form class="enter-phone-number-form" action="/send" method="POST">
+  <!-- <div>
+    <form class="enter-phone-number-form" action="/order-placed" method="POST">
       <label>Enter your number</label>
       <input class="enter-phone-input" type="number" name="phoneNumber" placeholder="+1 Your Phonenumber">
       <button id= "placeOrderBtn" type="submit" value="Place Order">Place Order</button>
     </form>
-  </div>
+  </div> -->
 
 </div>
 

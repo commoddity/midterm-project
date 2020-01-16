@@ -76,7 +76,7 @@ $(document).ready(() =>{
 
 
 // AJAX Calls
-  const loadMenuItems = () => {
+  const loadMenuItems = (event) => {
     const get_url = `/menu`;
     const request_method = `GET`;
     $.ajax({
@@ -91,7 +91,8 @@ $(document).ready(() =>{
     .catch(e => console.error(e));
   };
 
-  const checkoutOrder = () => {
+  const checkoutOrder = (event) => {
+    event.preventDefault();
     const post_url = '/checkout';
     const request_method = 'POST';
     const checkoutCart = getPropertiesFromLocalStorage();
@@ -100,12 +101,15 @@ $(document).ready(() =>{
       method: request_method,
       data: checkoutCart
     })
+    .then(() => {
+      window.location.assign('/checkout');
+    })
     .catch(e => console.error(e));
   };
 
 
 // Twilio AJAX Calls
-  const sendSms = () => {
+  const sendSms = (event) => {
     const post_url = `/send`;
     const request_method = `POST`;
     $.ajax({
@@ -113,7 +117,7 @@ $(document).ready(() =>{
       method: request_method
     })
     .catch(e => console.error(e));
-  }
+  };
 
 
 // Click Handlers for Menu Items
@@ -184,9 +188,9 @@ $(document).ready(() =>{
     .animate({width: 'toggle'});
   });
 
-  $(window).bind("beforeunload", function() {
-    return confirm("Your cart will be lost if you leave this page. Are you sure you want to leave?");
-  });
+  // $(window).bind("beforeunload", function() {
+  //   return confirm("Your cart will be lost if you leave this page. Are you sure you want to leave?");
+  // });
 
   $(window).on("unload", function() {
     window.localStorage.clear();
@@ -197,6 +201,9 @@ $(document).ready(() =>{
       window.localStorage.clear();
       $('.order-items').empty();
       $('#order-total').text('0');
+      $('div.quantity').find('input').val('0');
+      $('.add-to-cart').attr('disabled', true);
+      $('.remove-from-cart').attr('disabled', true);
     } else {
       return false;
     };
@@ -218,13 +225,11 @@ $(document).ready(() =>{
     $($removeFromCartBtn).attr('disabled', true)
   });
 
-  loadMenuItems();
-  updateCart();
-  $('.order-container').hide();
-
   $(document).on('click', '.checkout', function(event) {
-    checkoutOrder();
-  })
+    checkoutOrder(event);
+    $('.enter-phone-number-form:hidden')
+    .animate({width: 'toggle'});
+  });
 
   // $(document).on('click', '#sendSms', function(event) {
   //   console.log('sendSMS button is clicked!')
@@ -253,5 +258,9 @@ $(document).ready(() =>{
       });
     }
   });
+  $('.order-container').hide();
+  $('.enter-phone-number-form').hide();
+  loadMenuItems();
+  updateCart();
 
 });

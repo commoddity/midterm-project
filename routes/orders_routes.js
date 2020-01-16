@@ -1,26 +1,27 @@
 const express = require('express');
 
 const router = express.Router();
+const app = express();
 
-module.exports = (ordersService) => {
+module.exports = (ordersService, db) => {
 
   router.get("/", (req, res) => {
     res.render("index");
   });
 
-  router.post("/checkout", (req, res) => {
+  router.post("/checkout", async (req, res) => {
     const orderData = req.body;
-    ordersService.postOrders(orderData)
+    await ordersService.postOrders();
+    await ordersService.postOrderItems(orderData);
+    res.json({});
   });
 
-  router.get("/checkout", (req, res) => {
-    ordersService.getOrders()
-    .then(() => {
-      res.render("checkout")
-    })
-    .catch(e => console.error(e));
-  })
+  router.get("/checkout", async (req, res) => {
+    const orders = await ordersService.getOrder()
+    const templateVars = { orders };
+    console.log("RETURNED ORDER DATA 123->", orders)
+    res.render('checkout', templateVars)
+  });
 
-
-  return router
+  return router;
 };
