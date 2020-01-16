@@ -10,6 +10,7 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
+const session    = require('cookie-session')
 
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT

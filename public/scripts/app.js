@@ -77,7 +77,6 @@ $(document).ready(() =>{
 
 // AJAX Calls
   const loadMenuItems = (event) => {
-    // event.preventDefault();
     const get_url = `/menu`;
     const request_method = `GET`;
     $.ajax({
@@ -111,7 +110,6 @@ $(document).ready(() =>{
 
 // Twilio AJAX Calls
   const sendSms = (event) => {
-    // event.preventDefault();
     const post_url = `/send`;
     const request_method = `POST`;
     $.ajax({
