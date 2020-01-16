@@ -7,7 +7,8 @@ const router = express.Router();
 module.exports = (menuItemsService) => {
 
   router.get("/", (req, res) => {
-    res.render("index");
+    const templatevars = {userObj:``}
+    res.render("index", templatevars);
   })
 
   router.get("/menu", (req, res) => {
@@ -17,6 +18,17 @@ module.exports = (menuItemsService) => {
       res.json({data});
     })
     .catch(e => console.error(e))
+  })
+
+  router.get("/:id", (req, res) => {
+    const userId = req.params.id;
+    // console.log(userId)
+    menuItemsService.getUser(userId)
+    .then((data) => {
+      const templatevars = {userObj: data} 
+      console.log(templatevars);
+      res.render("index", templatevars);
+    })
   })
 
   return router
