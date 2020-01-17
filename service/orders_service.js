@@ -10,7 +10,6 @@ module.exports = (ordersRepository) => {
       return ordersRepository.getOrder(order);
     },
     sendMessage: (messageBody, userPhoneNumber) => {
-      console.log(messageBody);
       return ordersRepository.sendMessage(messageBody, userPhoneNumber)
     }
   };

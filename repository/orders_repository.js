@@ -9,7 +9,6 @@ module.exports = function (db, twilioParams) {
       `
       await db.connect();
       const res = await db.query(idQuery);
-      console.log("LATEST ORDER ID ->", res.rows[0].id)
       return res.rows[0].id;
     },
 
@@ -55,14 +54,13 @@ module.exports = function (db, twilioParams) {
     },
 
     sendMessage: (messageBody, userPhoneNumber) => {
-      console.log(twilioParams)
       const twilioClient = require('twilio')(twilioParams.accountSid, twilioParams.authToken);
       return twilioClient.messages.create({
-        body: `Your order has been received.`,
+        body: `${messageBody}`,
         from: twilioParams.fromPhone,
         to: `${userPhoneNumber}`
       })
-      .then((message) => console.log(message.sid, {userPhoneNumber}))
+      .then((message) => message)
       .catch(e => console.error(e))
     }
   };

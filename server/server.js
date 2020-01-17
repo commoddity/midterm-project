@@ -7,10 +7,9 @@ const HOST       = '0.0.0.0';
 const ENV        = process.env.ENV || "development";
 const express    = require("express");
 const bodyParser = require("body-parser");
-const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
-const session    = require('cookie-session')
+const session    = require('cookie-session');
 
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -23,32 +22,17 @@ const { Pool } = require('pg');
 const dbParams = require('../lib/db.js');
 const twilioParams = require('../lib/twilioParams');
 
-// const twilioClient = require('twilio')(twilioParams.accountSid, twilioParams.authToken);
-// twilioClient.messages.create({
-//   to: `+17788822481`,
-//   from: twilioParams.fromPhone,
-//   body: `I am sending you from the servre`
-// }).then((message) => console.log(message)).catch(e => console.error(e))
-
 const db = new Pool(dbParams);
 db.connect();
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(sass({
-  src: __dirname + "/styles",
-  dest: __dirname + "/public/styles",
-  debug: true,
-  outputStyle: 'expanded'
-}));
 
 app.use(express.static("public"));
 
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("../routes/users");
-const widgetsRoutes = require("../routes/widgets");
 const menuRoutes = require("../routes/menu_items_routes");
 const orderRoutes = require("../routes/orders_routes");
 // const twilioRoutes = require("../routes/twilioRoutes");
@@ -68,9 +52,6 @@ const ordersRepository = ordersRepositoryFactory(db, twilioParams)
 const ordersService = ordersServiceFactory(ordersRepository)
 
 // Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 app.use("/", menuRoutes(menuItemsService));
 app.use("/", orderRoutes(ordersService));

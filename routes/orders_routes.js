@@ -18,8 +18,8 @@ module.exports = (ordersService, db) => {
   router.get("/checkout", async (req, res) => {
     const orders = await ordersService.getOrder();
     const templateVars = { orders };
-    console.log("RETURNED ORDER DATA 123->", orders);
-    ordersService.sendMessage("TESTING TESTING TESTING", 17789600255);
+    const message = `New order received from ${orders[0].user_name}. Order ID: ${orders[0].order_id}. Order placed at: ${orders[0].time_placed}.`
+    ordersService.sendMessage(message, 17788822481);
     res.render('checkout', templateVars);
   });
 
