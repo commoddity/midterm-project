@@ -257,7 +257,6 @@ $(document).ready(() =>{
   // });
 
   $('.order-container').hide();
-  $('.enter-phone-number-form').hide();
   loadMenuItems();
   updateCart();
 
