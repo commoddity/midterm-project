@@ -17,7 +17,7 @@ module.exports = (ordersService, db) => {
   });
 
   router.get("/checkout", async (req, res) => {
-    const orders = await ordersService.getOrder()
+    const orders = await ordersService.getOrder();
     const templateVars = { orders };
     console.log("RETURNED ORDER DATA 123->", orders)
     res.render('checkout', templateVars);
