@@ -4,6 +4,10 @@ module.exports = (menuItemsRepository) => {
   return {
     getMenuItems: () => {
       return menuItemsRepository.getMenuItems()
+    },
+
+    getUser: (userId) => {
+      return menuItemsRepository.getUser(userId)
     }
   }
 };
