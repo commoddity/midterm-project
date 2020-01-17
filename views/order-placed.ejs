@@ -34,9 +34,8 @@
         <h3>Your order has been placed!</h3>
         <h4>Thank you for choosing Buns on Broadway, <%- orders[0].user_name %>.</h4>
         <p>You have been sent a confirmation text at <%- orders[0].phone_number %>.</p>
-      <p>Your order <%= inMemoryDb[orderReady] %>. You will receive a confirmation text when your order is ready.</p>
+      <p>Your order will be ready in <%-orderTime %> minutes. You will receive a confirmation text when your order is ready.</p>
       </div>
-      <button type="submit" action="/checkout" method="GET"></button>
       <div class="order-summary">
         <h4>Order Summary:</h4>
       <div class="order-items">

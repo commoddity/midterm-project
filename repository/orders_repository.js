@@ -62,11 +62,6 @@ module.exports = function (db, twilioParams) {
       })
       .then((message) => message)
       .catch(e => console.error(e))
-    },
-
-    receiveMessage: () => {
-      const messagingResponse = require('twilio').twiml.MessagingResponse;
-      return messagingResponse;
     }
   };
 };
