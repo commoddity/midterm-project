@@ -1,8 +1,8 @@
 INSERT INTO users (name, password, email, phone_number)
-VALUES ('Geordi Laforge', '1234', 'abc@cd.com', '123-4567');
+VALUES ('Pascal van Leeuwen', '1234', 'pascal@dogs.com', '17789600255');
 
 INSERT INTO restaurants (name, phone_number, email, city, street_address, postal_code)
-VALUES ('Buns on Broadway', '222-3333', 'bons@bons.com', 'Vancouver', '1234 Broadway Ave.', 'VVV 111');
+VALUES ('Buns on Broadway', '17788822482', 'bons@bons.com', 'Vancouver', '1234 Broadway Ave.', 'VVV 111');
 
 INSERT INTO menu_items (restaurant_id, name, price, image_url)
 VALUES (1, 'Eggs Benny', 10, 'https://live.staticflickr.com/8864/18137445236_5d0a115631_b.jpg'),

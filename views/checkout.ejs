@@ -35,11 +35,13 @@
       <p>You have been sent a confirmation text at <%- orders[0].phone_number %>.</p>
       <p>Your order is IN PROGRESS. You will receive a confirmation text when your order is ready.</p>
       <h4>Order Summary:</h4>
-      <ul>
-        <% for(let item in orders) { %>
-          <li><%- orders[item].name %>  - Qty. <%- orders[item].quantity %> - $<%- orders[item].price %>.00 - <%= orders[item].quantity * orders[item].price %></li>
-        <% } %>
-      </ul>
+      <div>
+        <ul>
+          <% for(let item in orders) { %>
+            <li class="order-summary-item"><span><%- orders[item].name %></span>  - Qty. <span><%- orders[item].quantity %></span> - <span>Each: $<%- orders[item].price %>.00</span> - <span>Total: <%= orders[item].quantity * orders[item].price %></span></li>
+          <% } %>
+        </ul>
+      </div>
       <p>Total Price: $
         <% total = 0; %>
         <% for (item in orders) { %>
