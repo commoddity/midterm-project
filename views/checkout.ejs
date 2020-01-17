@@ -42,7 +42,7 @@
         <ul>
           <li class="order-summary-item"><span>Item</span><span>Qty.</span><span>Cost per Each.</span><span>Cost Total</span></li>
           <% for(let item in orders) { %>
-            <li class="order-summary-item"><span><%- orders[item].name %></span> <span><%- orders[item].quantity %></span><span>$<%- orders[item].price %>.00</span><span><%= orders[item].quantity * orders[item].price %></span></li>
+            <li class="order-summary-item"><span><%- orders[item].name %></span> <span><%- orders[item].quantity %></span><span>$<%- orders[item].price %>.00</span><span>$<%= orders[item].quantity * orders[item].price %>.00</span></li>
           <% } %>
         </ul>
       </div>

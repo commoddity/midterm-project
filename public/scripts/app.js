@@ -22,8 +22,8 @@ $(document).ready(() =>{
               <button class="minus-btn" type="button" name="button">
                 <img class="minus" src="../img/minus.png" alt="" />
               </button>
-              <button class="add-to-cart" disabled>Add to Cart</button>
-              <button class="remove-from-cart" disabled>Remove from Cart</button>
+              <button class="add-to-cart btn-primary" disabled>Add to Cart</button>
+              <button class="remove-from-cart btn-danger" disabled>Remove from Cart</button>
             </div>
           </div>
         </div>
