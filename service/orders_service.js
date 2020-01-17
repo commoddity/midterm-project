@@ -10,7 +10,10 @@ module.exports = (ordersRepository) => {
       return ordersRepository.getOrder(order);
     },
     sendMessage: (messageBody, userPhoneNumber) => {
-      return ordersRepository.sendMessage(messageBody, userPhoneNumber)
+      return ordersRepository.sendMessage(messageBody, userPhoneNumber);
+    },
+    receiveMessage: () => {
+      return ordersRepository.receiveMessage();
     }
   };
 };
