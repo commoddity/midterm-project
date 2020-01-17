@@ -1,23 +1,72 @@
 .navbar {
-  background-color: purple;
   color: white;
   position: fixed;
   top: 0;
   overflow: hidden;
   height: 50px;
   width: 100%;
+  -webkit-box-shadow: 0px 40px 49px -38px rgba(0,0,0,0.72);
+  box-shadow: 0px 40px 49px -38px rgba(0,0,0,0.72);
+}
+
+.navbar-custom {
+  /* background-color: #F4C3C2; */
+  border-bottom: 2px solid black;;
+  background-size: 100%;
+  height: 75px;
+  background-image: url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3356&q=80');
+  padding-bottom: 15px;
 }
 
 .navbar a {
   color: white;
+}
+
+#home {
+  color:white;
+  vertical-align: center;
+  font-weight: 800px;
+}
+
+#buns-link {
+  color: white;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 35px;
+}
+
+.nav-link {
+  font-family: 'Lato', sans-serif;
+  font-size: 23px;
+}
+
+#lblCartCount {
+  position: absolute;
   font-size: 20px;
+  background: #ff0000;
+  color: #fff;
+  padding: 0px 5px;
+  vertical-align: left;
+  right: 9px;
+  opacity: 0.9;
+  border-radius: 11px;
 }
-.shopping-cart img {
-  width: 50px;
+
+#shopping-cart {
+  width: 45px;
+  height: 45px;
 }
-.shopping-cart span {
-  color:red;
-  font-size: 24px;
-  font-weight: 600;
+
+#cart-background {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 11px;
+  padding: 1px 13px;
+  border: 2px solid black;
+}
+
+#shopping{
+  color:rgb(0, 0, 0);
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
   margin-right: 10px;
+  text-align: middle;
 }

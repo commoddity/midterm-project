@@ -1,32 +1,70 @@
-body {
-  background-color: #EEE;
-  margin-top: 50px;
+#body {
+  margin-top: 72px;
+  background: url('https://images.unsplash.com/photo-1517757814062-2a2c761218f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=3335&q=80') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;;
 }
 
-body h1 {
-  color: white;
-}
 
 .restaurant-header {
+  position:relative;
   text-align: center;
   color: white;
   text-shadow: 3px 1px black;
   width: 100%;
+  height: 280px;
+  /* padding: 4.25% 0; */
+  border: 3px solid black;
+  background-repeat: no-repeat;
+  background-size: auto;
   background-color: black;
-  background-image: url("https://image.shutterstock.com/z/stock-photo-large-spread-of-breakfast-and-lunch-foods-served-in-a-greasy-spoon-diner-in-america-traditional-1394141693.jpg");
+  background-position: center;
+  background-image: url("https://www.ratemds.com/blog/wp-content/uploads/2016/01/breakfast1-720x320@2x.jpg");
+  -webkit-box-shadow: 10px 21px 43px -38px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 21px 43px -38px rgba(0,0,0,0.75);
+  box-shadow: 10px 21px 43px -38px rgba(0,0,0,0.75);
+}
+
+.restaurant-header img {
+  filter: blur(12px);
+  -webkit-filter: blur(12px);
+}
+
+.restaurant-header h1 {
+  color: white;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  width: auto;
+  font-size: 55px;
+  padding-top: 15px;
+  opacity: 1;
 }
 
 .restaurant-header p {
   font-size: 28px;
-  width: 700px;
+  width: auto;
+  font-family: 'Lato', sans-serif;
   text-align: center;
+  opacity: 1;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 13px;
+}
+
+.header-box {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  align-self: center;
+  width: 55%;
+  background-color: rgb(0, 0, 0, 0.4);
+  border: 3px solid black;
   margin-left: auto;
   margin-right: auto;
 }
 
-.copyright {
-  position: absolute;
-  margin-left: 26px;
-  bottom: 25px;
-  left: 25px;
+#copyright {
+  font-family: 'Lato', sans-serif;
+  float: right;
 }

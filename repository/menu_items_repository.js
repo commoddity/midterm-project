@@ -4,7 +4,7 @@ module.exports = (db) => {
   return {
     getMenuItems: () => {
       const queryString = `
-      SELECT id, name, price, image_url
+      SELECT id, name, blurb, price, image_url
       FROM menu_items
       `
       return db.query(queryString)

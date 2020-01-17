@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Buns on Broadway</a>
+  <nav class="navbar navbar-custom fixed-top navbar-expand-lg navbar-light">
+    <a class="navbar-brand" id="buns-link" href="/">Buns on Broadway</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" id="home" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
       </ul>
     </div>
-    <div class="shopping-cart">
-      <img src="https://svgsilh.com/svg/304843.svg">
-      <span class="item-quantity">CART (<span class="qtyVal">0</span>)</span>
+    <div id="cart-background">
+      <i class="fa fa-shopping-cart"></i>
+      <span id="shopping">Shopping Cart</span>
+      <img id="shopping-cart" src="https://svgsilh.com/svg/304843.svg">
+      <a href="Cart1.aspx" class="icon-shopping-cart" style="font-size: 25px">
+      <asp:Label ID="lblCartCount" runat="server" CssClass="badge badge-warning"  ForeColor="White"/><span class="qtyVal">0</span></a>
     </div>
   </nav>
 </header>

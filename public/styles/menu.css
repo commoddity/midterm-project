@@ -1,25 +1,58 @@
 .menu-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 20px;
+  justify-content: start;
+  margin-top: 30px;
   margin-left: 20px;
   margin-right: 20px;
+  -webkit-box-shadow: 10px 21px 43px -38px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 21px 43px -38px rgba(0,0,0,0.75);
+  box-shadow: 10px 21px 43px -38px rgba(0,0,0,0.75);
 }
 
 .menu-item {
-  display: grid;
   justify-self: center;
-  width: 330px;
+  width: 80%;
+  border-radius: 15px;
+  border: 2px solid black;
+  overflow: hidden;
+}
+
+.item-text, .item-price {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 33px;
+}
+
+.item-blurb {
+  font-family: 'Lato', sans-serif;
+  font-size: 24px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction:row;
+}
+
+.menu-item-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
 }
 
 .menu-item-image {
   height: 260px;
-  width: auto;
+  width: 340px;
+  margin: 10px;
+  padding: 1px;
+  border: 3px solid black;
 }
 
 .item-body {
   margin-left: 10px;
-  margin-right: 10px
+  margin-right: 10px;
+  width: 90%;
 }
 
 .item-price {
@@ -27,11 +60,16 @@
 }
 
 .quantity {
-  align-items: right;
+
 }
 
 .quantity-field {
   width: 30px;
+}
+
+.item-num {
+  width: 30px;
+  text-align: center;
 }
 
 .plus {

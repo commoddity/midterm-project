@@ -1,10 +1,12 @@
 <div class="restaurant-header">
-  <h1>Welcome to Buns on Broadway!</h1>
+  <div class="header-box">
+    <h1>Welcome to Buns on Broadway!</h1>
     <p>We pride ourselves in serving up greasy spoon style hangover breakfast food for hungry people on a budget!</p>
+  </div>
 </div>
 
 <div class="order-container">
-  <h1>Order Summary</h1>
+  <h1 id="order-summary">Order Summary</h1>
   <div class="order-items">
   </div>
 
@@ -12,7 +14,7 @@
     <p>Order Total: $<span id="order-total">0</span>.00</p>
   </div>
   <div class="checkout-div">
-    <button class="hide-cart btn-primary">Hide Cart</button>
+    <button class="hide-cart btn-primary" id="hide-cart">Hide Cart</button>
     <div>
       <button class="empty-cart btn-danger">Empty Cart</button>
       <form action="/checkout" method="POST">

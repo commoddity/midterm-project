@@ -1,13 +1,13 @@
 .order-container {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background: rgba(255, 255, 255, 0.9);
+  font-family: 'Lato', sans-serif;
   text-align: right;
   position: fixed;
   overflow: hidden;
   white-space: nowrap;
   border: 5px solid black;
-  opacity: 0.9;
   top: 10%;
   right: 0px;
   z-index: 5;
@@ -15,6 +15,15 @@
   width: 50%;
   max-width: 500px;
   min-width: 340px;
+}
+
+#order-summary {
+  margin-top: 20px;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+#hide-cart {
+  height: 50%;
 }
 
 .order-container h1 {

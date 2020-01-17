@@ -11,8 +11,11 @@ $(document).ready(() =>{
         <div class="card">
           <img class="menu-item-image" src="${data.image_url}" alt="Card image cap">
           <div class="item-body">
-            <span class="item-text">${data.name}</span>
-            <span class="item-price">$${data.price}.00</span>
+            <div class="menu-item-header">
+              <p class="item-text">${data.name}</p>
+              <span class="item-price">$${data.price}.00</span>
+            </div>
+            <p class="item-blurb">${data.blurb}</p>
             <div class="quantity" data-value="${data.id}">
               <button class="plus-btn" type="button" name="button">
                 <img class="plus" src="../img/plus.png" alt="" />
@@ -21,6 +24,7 @@ $(document).ready(() =>{
               <button class="minus-btn" type="button" name="button">
                 <img class="minus" src="../img/minus.png" alt="" />
               </button>
+              <br>
               <button class="add-to-cart btn-primary" disabled>Add to Cart</button>
               <button class="remove-from-cart btn-danger" disabled>Remove from Cart</button>
             </div>
