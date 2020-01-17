@@ -1,9 +1,3 @@
-INSERT INTO users (name, password, email, phone_number)
-VALUES ('Pascal van Leeuwen', '1234', 'pascal@dogs.com', '17789600255');
-
-INSERT INTO restaurants (name, phone_number, email, city, street_address, postal_code)
-VALUES ('Buns on Broadway', '17788822482', 'bons@bons.com', 'Vancouver', '1234 Broadway Ave.', 'VVV 111');
-
 INSERT INTO menu_items (restaurant_id, name, blurb, price, image_url)
 VALUES (1, 'Eggs Benny', 'Eggs Benny. english muffin topped with prosciutto, fresh tomatoes & 2 poached eggs, covered in hollandaise sauce.', 10, 'https://live.staticflickr.com/8864/18137445236_5d0a115631_b.jpg'),
 (1, 'Omelette', 'Savour our delicious omelettes! Traditional or egg-white only! All are accompanied with potatoes and your choice of toast.', 9, 'https://live.staticflickr.com/206/462917140_4fb7f4834b_b.jpg'),

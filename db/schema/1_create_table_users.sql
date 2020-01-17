@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS users CASCADE;
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  password VARCHAR(255),
+  phone_number VARCHAR(22) NOT NULL,
+  email VARCHAR(255) NOT NULL
+);
+
+GRANT ALL PRIVILEGES ON TABLE users TO labber;
+
+GRANT ALL ON SEQUENCE users_id_seq TO labber;
