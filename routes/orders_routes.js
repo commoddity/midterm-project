@@ -20,7 +20,7 @@ module.exports = (ordersService, db) => {
     const orders = await ordersService.getOrder()
     const templateVars = { orders };
     console.log("RETURNED ORDER DATA 123->", orders)
-    res.render('checkout', templateVars)
+    res.render('checkout', templateVars);
   });
 
   return router;

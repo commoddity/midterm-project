@@ -251,7 +251,9 @@ $(document).ready(() =>{
         url : post_url,
         type: request_method,
         data : form_data
-      }).done(function(data){
+      })
+      .done(function(data){
+        // checkoutOrder(event);
         // DO SOMETHING AFTER THE POST
         console.log(`success, ${data}`)
         // loadMenuItems();
