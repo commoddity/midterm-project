@@ -4,8 +4,8 @@ const router = express.Router();
 
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
-let inMemoryDb = {
-  orderReady: 0
+let object = {
+  orderReady: ''
 };
 
 module.exports = (ordersService, db) => {
@@ -24,14 +24,18 @@ module.exports = (ordersService, db) => {
   router.get("/checkout", async (req, res) => {
     const orders = await ordersService.getOrder();
     const message = `New order received from ${orders[0].user_name}. Order ID: ${orders[0].order_id}. Order placed at: ${orders[0].time_placed}.`
+    if (!object.orderReady) {
+    object.orderReady = 'is IN PROGRESS'
     ordersService.sendMessage(message, 17788822481);
+    };
+    const templateVars = { orders, object };
     res.render('checkout', templateVars);
   });
 
   router.post('/sms', async (req, res) => {
     const orders = await ordersService.getOrder();
     const orderTime = req.body.Body;
-    // const templateVars = { orders, orderTime};
+    object.orderReady = `should be ready for pickup in ${orderTime} minutes`;
     const twiml = new MessagingResponse();
     const message = twiml.message();
     const userMessage = `Your order has been received. You may pick up your order in ${orderTime} minutes.`
