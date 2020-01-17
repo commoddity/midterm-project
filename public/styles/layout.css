@@ -23,3 +23,9 @@ body h1 {
   margin-left: auto;
   margin-right: auto;
 }
+
+.copyright {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+}

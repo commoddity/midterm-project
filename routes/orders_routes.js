@@ -1,7 +1,6 @@
 const express = require('express');
 
 const router = express.Router();
-const app = express();
 
 module.exports = (ordersService, db) => {
 
@@ -20,6 +19,7 @@ module.exports = (ordersService, db) => {
     const orders = await ordersService.getOrder();
     const templateVars = { orders };
     console.log("RETURNED ORDER DATA 123->", orders)
+    ordersService.sendMessage("TESTING TESTING TESTING")
     res.render('checkout', templateVars);
   });
 

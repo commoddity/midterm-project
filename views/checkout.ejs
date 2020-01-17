@@ -30,32 +30,36 @@
     <%- include("./partials/_restaurantCover") %>
 
     <div class="checkout-message">
-      <h3>Your order has been placed!</h3>
-      <h4>Thank you for choosing Buns on Broadway, <%- orders[0].user_name %>.</h4>
-      <p>You have been sent a confirmation text at <%- orders[0].phone_number %>.</p>
+      <div class="order-placed-text">
+        <h3>Your order has been placed!</h3>
+        <h4>Thank you for choosing Buns on Broadway, <%- orders[0].user_name %>.</h4>
+        <p>You have been sent a confirmation text at <%- orders[0].phone_number %>.</p>
       <p>Your order is IN PROGRESS. You will receive a confirmation text when your order is ready.</p>
-      <h4>Order Summary:</h4>
-      <div>
+      </div>
+      <div class="order-summary">
+        <h4>Order Summary:</h4>
+      <div class="order-items">
         <ul>
+          <li class="order-summary-item"><span>Item</span><span>Qty.</span><span>Cost per Each.</span><span>Cost Total</span></li>
           <% for(let item in orders) { %>
-            <li class="order-summary-item"><span><%- orders[item].name %></span>  - Qty. <span><%- orders[item].quantity %></span> - <span>Each: $<%- orders[item].price %>.00</span> - <span>Total: <%= orders[item].quantity * orders[item].price %></span></li>
+            <li class="order-summary-item"><span><%- orders[item].name %></span> <span><%- orders[item].quantity %></span><span>$<%- orders[item].price %>.00</span><span><%= orders[item].quantity * orders[item].price %></span></li>
           <% } %>
         </ul>
       </div>
-      <p>Total Price: $
-        <% total = 0; %>
-        <% for (item in orders) { %>
-          <% total += (orders[item].quantity * orders[item].price) %>
-        <% } %>
-        <%= total; %>.00
-      </p>
-
+        <p>Total Price: $
+          <% total = 0; %>
+          <% for (item in orders) { %>
+            <% total += (orders[item].quantity * orders[item].price) %>
+          <% } %>
+          <%= total; %>.00
+        </p>
+      </div>
     </div>
 
   </body>
 
   <footer>
-    <p>&copy; 2020, Buns On Broadway</p>
+    <p class= "coypright">&copy; 2020, Buns On Broadway</p>
   </footer>
 
 </html>

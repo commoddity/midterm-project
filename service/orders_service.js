@@ -8,6 +8,9 @@ module.exports = (ordersRepository) => {
     },
     getOrder: (order) => {
       return ordersRepository.getOrder(order);
+    },
+    sendMessage: (messageBody) => {
+      console.log(messageBody);
     }
   };
 };
