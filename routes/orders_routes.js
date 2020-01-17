@@ -23,5 +23,12 @@ module.exports = (ordersService, db) => {
     res.render('checkout', templateVars);
   });
 
+  router.post("/sms", (req, res) => {
+    const twiml = ordersService.receiveMessage();
+    twiml.message('Your order will be ready in 15 minutes.');
+    res.writeHead(200, {'Content-type': 'text/xml'});
+    res.end(twiml.toString());
+  });
+
   return router;
 };

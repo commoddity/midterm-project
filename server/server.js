@@ -55,15 +55,11 @@ const ordersService = ordersServiceFactory(ordersRepository)
 // Note: mount other resources here, using the same pattern above
 app.use("/", menuRoutes(menuItemsService));
 app.use("/", orderRoutes(ordersService));
-// app.use("/", twilioRoutes(twilioService));
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-// app.get("/", (req, res) => {
-//   res.render("index");
-// });
-//app.get("/menuitems", (req,res) =>{res.send('Welcome!')})
+
 app.listen(PORT, HOST, () => {
   console.log(`Example app listening on port ${PORT}\nWelcome to Buns on Broadway!`);
 });

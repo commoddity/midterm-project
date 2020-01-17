@@ -26,6 +26,7 @@ body h1 {
 
 .copyright {
   position: absolute;
+  margin-left: 26px;
   bottom: 25px;
   left: 25px;
 }
