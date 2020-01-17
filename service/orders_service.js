@@ -9,8 +9,9 @@ module.exports = (ordersRepository) => {
     getOrder: (order) => {
       return ordersRepository.getOrder(order);
     },
-    sendMessage: (messageBody) => {
+    sendMessage: (messageBody, userPhoneNumber) => {
       console.log(messageBody);
+      return ordersRepository.sendMessage(messageBody, userPhoneNumber)
     }
   };
 };

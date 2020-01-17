@@ -1,4 +1,4 @@
-module.exports = function (db) {
+module.exports = function (db, twilioParams) {
   return {
     getLatestOrderId: async function ()  {
       const idQuery = `
@@ -52,6 +52,18 @@ module.exports = function (db) {
       const values = [id];
       const res = await db.query(ordersQueryString, values);
       return res.rows;
+    },
+
+    sendMessage: (messageBody, userPhoneNumber) => {
+      console.log(twilioParams)
+      const twilioClient = require('twilio')(twilioParams.accountSid, twilioParams.authToken);
+      return twilioClient.messages.create({
+        body: `Your order has been received.`,
+        from: twilioParams.fromPhone,
+        to: `${userPhoneNumber}`
+      })
+      .then((message) => console.log(message.sid, {userPhoneNumber}))
+      .catch(e => console.error(e))
     }
   };
 };

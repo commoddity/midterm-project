@@ -51,7 +51,7 @@ const usersRoutes = require("../routes/users");
 const widgetsRoutes = require("../routes/widgets");
 const menuRoutes = require("../routes/menu_items_routes");
 const orderRoutes = require("../routes/orders_routes");
-const twilioRoutes = require("../routes/twilioRoutes");
+// const twilioRoutes = require("../routes/twilioRoutes");
 
 //Menu Items Layers
 const menuItemsRepositoryFactory = require("../repository/menu_items_repository");
@@ -64,15 +64,8 @@ const menuItemsService = menuItemsServiceFactory(menuItemsRepository)
 const ordersRepositoryFactory = require("../repository/orders_repository");
 const ordersServiceFactory = require("../service/orders_service");
 
-const ordersRepository = ordersRepositoryFactory(db)
+const ordersRepository = ordersRepositoryFactory(db, twilioParams)
 const ordersService = ordersServiceFactory(ordersRepository)
-
-//Twilio Layers
-const twilioRepositoryFactory = require("../repository/twilio_repository");
-const twilioServiceFactory = require("../service/twilio_service");
-
-const twilioRepository = twilioRepositoryFactory(twilioParams);
-const twilioService = twilioServiceFactory(twilioRepository);
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -81,7 +74,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 app.use("/", menuRoutes(menuItemsService));
 app.use("/", orderRoutes(ordersService));
-app.use("/", twilioRoutes(twilioService));
+// app.use("/", twilioRoutes(twilioService));
 
 // Home page
 // Warning: avoid creating more routes in this file!
