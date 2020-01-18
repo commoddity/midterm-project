@@ -8,27 +8,34 @@ $(document).ready(() =>{
   const createMenuItem = function(data) {
     const menuItem = `
       <div class="menu-item">
-        <div class="card">
+        <div class="menu-image-div">
           <img class="menu-item-image" src="${data.image_url}" alt="Card image cap">
-          <div class="item-body">
-            <div class="menu-item-header">
-              <p class="item-text">${data.name}</p>
-              <span class="item-price">$${data.price}.00</span>
-            </div>
-            <p class="item-blurb">${data.blurb}</p>
-            <div class="quantity" data-value="${data.id}">
-              <button class="plus-btn" type="button" name="button">
-                <img class="plus" src="../img/plus.png" alt="" />
-              </button>
-              <input class="item-num" type="text" name="name" value="0">
-              <button class="minus-btn" type="button" name="button">
-                <img class="minus" src="../img/minus.png" alt="" />
-              </button>
-              <br>
-              <button class="add-to-cart btn-primary" disabled>Add to Cart</button>
-              <button class="remove-from-cart btn-danger" disabled>Remove from Cart</button>
-            </div>
+        </div>
+        <div class="item-header">
+          <div>
+            <p class="item-name">${data.name}</p>
           </div>
+          <div>
+            <p class="item-price">$${data.price}.00</p>
+          </div>
+          <div class="quantity" data-value="${data.id}">
+            <button class="plus-btn" type="button" name="button">
+              <img class="plus" src="../img/plus.png" alt="" />
+            </button>
+            <input class="item-num" type="text" name="name" value="0">
+            <button class="minus-btn" type="button" name="button">
+              <img class="minus" src="../img/minus.png" alt="" />
+            </button>
+            <button class="add-to-cart" disabled>
+              <img class="add-cart-icon" src="../img/cart-add.png" alt="" />
+            </button>
+            <button class="remove-from-cart" disabled>
+              <img class="remove-cart-icon" src="../img/delete.png" alt="" />
+            </button>
+          </div>
+        </div>
+        <div class="item-blurb">
+          <p>${data.blurb}</p>
         </div>
       </div>
     `;
@@ -131,8 +138,6 @@ $(document).ready(() =>{
     $quantity === 0 ? window.localStorage.removeItem($id) : JSON.stringify(localStorage.setItem($id, $quantity));
     updateCart();
     renderOrderItems(localStorage);
-    $('.order-container:hidden')
-      .animate({width: 'toggle'});
   });
 
   $(document).on("click", ".remove-from-cart", function() {
@@ -145,7 +150,7 @@ $(document).ready(() =>{
     updateCart();
     renderOrderItems(localStorage);
     $quantity = 0;
-    $($addToCartBtn).text(`Add to Cart`);
+    // $($addToCartBtn).text(`Add to Cart`);
     $($addToCartBtn).attr('disabled', true);
     $input.val($quantity);
     $this.attr('disabled', true);
@@ -158,10 +163,10 @@ $(document).ready(() =>{
     const $addToCartBtn = $(this).siblings(".add-to-cart");
     const $removeFromCartBtn = $(this).siblings(".remove-from-cart");
     if ($quantity >= 1) {
-      localStorage.getItem($id) && $($addToCartBtn).text(`Update Cart`);
+      // localStorage.getItem($id) && $($addToCartBtn).text(`Update Cart`);
       $quantity--;
       if ($quantity === 0) {
-        localStorage.getItem($id) && $($addToCartBtn).text(`Update Cart`);
+        // localStorage.getItem($id) && $($addToCartBtn).text(`Update Cart`);
         $($removeFromCartBtn).attr('disabled', true);
       }
     }
@@ -176,13 +181,17 @@ $(document).ready(() =>{
     const $removeFromCartBtn = $(this).siblings(".remove-from-cart");
     $($addToCartBtn).attr('disabled', false);
     $($removeFromCartBtn).attr('disabled', false);
-    localStorage.getItem($id) && $($addToCartBtn).text(`Update Cart`);
+    // localStorage.getItem($id) && $($addToCartBtn).text(`Update Cart`);
     if ($quantity <= 100) {
       $quantity++;
     }
     $input.val($quantity);
   });
 
+  $(document).on('click', '#cart-background', function(event) {
+    $('.order-container:hidden')
+      .animate({width: 'toggle'});
+  });
 
   //Click Handlers for Order
   $(document).on('click', '.hide-cart', function(event) {
@@ -219,7 +228,7 @@ $(document).ready(() =>{
     renderOrderItems(localStorage);
     $quantity = 0;
     $input.val($quantity);
-    $($addToCartBtn).text(`Add to Cart`);
+    // $($addToCartBtn).text(`Add to Cart`);
     $($addToCartBtn).attr('disabled', true);
     $($removeFromCartBtn).attr('disabled', true);
   });

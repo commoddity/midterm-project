@@ -37,6 +37,23 @@
   font-size: 23px;
 }
 
+#cart-background {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 11px;
+  padding: 1px 13px;
+  border: 2px solid black;
+}
+
+#shopping-cart {
+  width: 45px;
+  height: 45px;
+}
+
+#shopping-cart:hover {
+  filter: invert(6%) sepia(100%) saturate(8525%) hue-rotate(299deg) brightness(116%) contrast(91%) drop-shadow(2px 2px 0 black);
+  height:55px;
+}
+
 #lblCartCount {
   position: absolute;
   font-size: 20px;
@@ -47,18 +64,6 @@
   right: 9px;
   opacity: 0.9;
   border-radius: 11px;
-}
-
-#shopping-cart {
-  width: 45px;
-  height: 45px;
-}
-
-#cart-background {
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 11px;
-  padding: 1px 13px;
-  border: 2px solid black;
 }
 
 #shopping{
