@@ -84,13 +84,13 @@
     padding-bottom: 1%;
   }
 
+  .menu-container {
+    grid-template-columns: 1fr;
+  }
+
   .menu-item {
-    display: grid;
     width: 100%;
-    padding: 3%;
-    background: rgba(255, 255, 255, 0.9);
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
   }
 
   .menu-image-div {
