@@ -9,8 +9,6 @@ const express    = require("express");
 const bodyParser = require("body-parser");
 const app        = express();
 const morgan     = require('morgan');
-const session    = require('cookie-session');
-
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -34,26 +32,31 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const menuRoutes = require("../routes/menu_items_routes");
 const orderRoutes = require("../routes/orders_routes");
-// const twilioRoutes = require("../routes/twilioRoutes");
 
 //Menu Items Layers
 const menuItemsRepositoryFactory = require("../repository/menu_items_repository");
 const menuItemsServiceFactory = require("../service/menu_items_service");
 
-const menuItemsRepository = menuItemsRepositoryFactory(db)
-const menuItemsService = menuItemsServiceFactory(menuItemsRepository)
+const menuItemsRepository = menuItemsRepositoryFactory(db);
+const menuItemsService = menuItemsServiceFactory(menuItemsRepository);
+
 
 //Orders Layers
 const ordersRepositoryFactory = require("../repository/orders_repository");
 const ordersServiceFactory = require("../service/orders_service");
 
-const ordersRepository = ordersRepositoryFactory(db, twilioParams)
-const ordersService = ordersServiceFactory(ordersRepository)
+const ordersRepository = ordersRepositoryFactory(db);
+const ordersService = ordersServiceFactory(ordersRepository);
+
+//Order Placed Layer
+const orderPlacedServiceFactory = require("../service/order_placed_service");
+
+const orderPlacedService = orderPlacedServiceFactory(ordersService, db);
 
 // Mount all resource routes
 // Note: mount other resources here, using the same pattern above
 app.use("/", menuRoutes(menuItemsService));
-app.use("/", orderRoutes(ordersService));
+app.use("/", orderRoutes(ordersService, orderPlacedService));
 
 // Home page
 // Warning: avoid creating more routes in this file!

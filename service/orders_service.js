@@ -1,19 +1,13 @@
 module.exports = (ordersRepository) => {
   return {
+    getLatestOrderId: (orders) => {
+      return ordersRepository.getLatestOrderId(orders);
+    },
     postOrders: (orders) => {
       return ordersRepository.postOrders(orders);
     },
     postOrderItems: (orders) => {
       return ordersRepository.postOrderItems(orders);
-    },
-    getOrder: (order) => {
-      return ordersRepository.getOrder(order);
-    },
-    sendMessage: (messageBody, userPhoneNumber) => {
-      return ordersRepository.sendMessage(messageBody, userPhoneNumber);
-    },
-    receiveMessage: () => {
-      return ordersRepository.receiveMessage();
     }
   };
 };

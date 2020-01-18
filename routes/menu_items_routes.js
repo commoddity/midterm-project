@@ -1,5 +1,3 @@
-// ONLY DEALS WITH ROUTES --> OTHERWISE KNOWN AS CONTOLLERS
-// HAS DEPENDENCY WITH SERVICE PARAMETERS ONLY
 const express = require('express');
 
 const router = express.Router();
