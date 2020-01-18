@@ -11,7 +11,7 @@ const getSumOfLocalStorage = () => {
   return sum;
 };
 
-const getPropertiesFromLocalStorage= () => {
+const getPropertiesFromLocalStorage = () => {
   let properties = {};
   for (let i = 0; i < window.localStorage.length; i ++) {
     const storageKey = window.localStorage.key(i);

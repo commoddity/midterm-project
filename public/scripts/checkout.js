@@ -1,4 +1,4 @@
-const { helpers } = ('./helpers.js')
+const { helpers } = ('./helpers.js');
 
 $(document).ready(() =>{
 

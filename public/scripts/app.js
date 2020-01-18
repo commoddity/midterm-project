@@ -1,11 +1,11 @@
-const { helpers } = ('./helpers.js')
+const { helpers } = ('./helpers.js');
 
 $(document).ready(() =>{
 
   let globalData;
 
-// Menu Creation Functions
-  const createMenuItem = function (data) {
+  // Menu Creation Functions
+  const createMenuItem = function(data) {
     const menuItem = `
       <div class="menu-item">
         <div class="card">
@@ -31,11 +31,11 @@ $(document).ready(() =>{
           </div>
         </div>
       </div>
-    `
+    `;
     return menuItem;
   };
 
-  const createOrderItem = function (localKey) {
+  const createOrderItem = function(localKey) {
     const quantity = window.localStorage.getItem(localKey);
     const name = globalData.find(e => e.id == localKey).name;
     const price = globalData.find(e => e.id == localKey).price;
@@ -51,8 +51,8 @@ $(document).ready(() =>{
       </button>
     </div>
 
-    `
-    return {orderItem, totalPrice}
+    `;
+    return {orderItem, totalPrice};
   };
 
   const renderMenuItems = (data) => {
@@ -60,7 +60,7 @@ $(document).ready(() =>{
     domContainer.empty();
     data.forEach(item => {
       const menuItem = createMenuItem(item);
-      domContainer.append(menuItem)
+      domContainer.append(menuItem);
     });
   };
 
@@ -71,14 +71,14 @@ $(document).ready(() =>{
     for (let i = 0; i < locStor.length; i++) {
       const localKey = JSON.parse(locStor.key(i));
       const menuItem = createOrderItem(localKey);
-      domContainer.append(menuItem.orderItem)
+      domContainer.append(menuItem.orderItem);
       orderTotal += menuItem.totalPrice;
     }
     $('#order-total').html(orderTotal);
   };
 
 
-// AJAX Calls
+  // AJAX Calls
   const loadMenuItems = (event) => {
     const get_url = `/menu`;
     const request_method = `GET`;
@@ -86,12 +86,12 @@ $(document).ready(() =>{
       url: get_url,
       method: request_method
     })
-    .done((result) => {
-      globalData = result.data;
-      renderMenuItems(globalData);
-      updateQuantity();
-    })
-    .catch(e => console.error(e));
+      .done((result) => {
+        globalData = result.data;
+        renderMenuItems(globalData);
+        updateQuantity();
+      })
+      .catch(e => console.error(e));
   };
 
   const checkoutOrder = (event) => {
@@ -104,14 +104,14 @@ $(document).ready(() =>{
       method: request_method,
       data: checkoutCart
     })
-    .then(() => {
-      window.location.assign('/checkout');
-    })
-    .catch(e => console.error(e));
+      .then(() => {
+        window.location.assign('/checkout');
+      })
+      .catch(e => console.error(e));
   };
 
 
-// Twilio AJAX Calls
+  // Twilio AJAX Calls
   const sendSms = (event) => {
     const post_url = `/send`;
     const request_method = `POST`;
@@ -119,11 +119,11 @@ $(document).ready(() =>{
       url: post_url,
       method: request_method
     })
-    .catch(e => console.error(e));
+      .catch(e => console.error(e));
   };
 
 
-// Click Handlers for Menu Items
+  // Click Handlers for Menu Items
   $(document).on("click", ".add-to-cart", function() {
     const $id = $(this).closest('div.quantity').data("value");
     const $input = $(this).closest('div').find('input');
@@ -132,7 +132,7 @@ $(document).ready(() =>{
     updateCart();
     renderOrderItems(localStorage);
     $('.order-container:hidden')
-    .animate({width: 'toggle'});
+      .animate({width: 'toggle'});
   });
 
   $(document).on("click", ".remove-from-cart", function() {
@@ -146,7 +146,7 @@ $(document).ready(() =>{
     renderOrderItems(localStorage);
     $quantity = 0;
     $($addToCartBtn).text(`Add to Cart`);
-    $($addToCartBtn).attr('disabled', true)
+    $($addToCartBtn).attr('disabled', true);
     $input.val($quantity);
     $this.attr('disabled', true);
   });
@@ -162,10 +162,10 @@ $(document).ready(() =>{
       $quantity--;
       if ($quantity === 0) {
         localStorage.getItem($id) && $($addToCartBtn).text(`Update Cart`);
-        $($removeFromCartBtn).attr('disabled', true)
+        $($removeFromCartBtn).attr('disabled', true);
       }
     }
-  $input.val($quantity);
+    $input.val($quantity);
   });
 
   $(document).on('click', '.plus-btn', function(event) {
@@ -174,28 +174,28 @@ $(document).ready(() =>{
     let $quantity = parseInt($input.val());
     const $addToCartBtn = $(this).siblings(".add-to-cart");
     const $removeFromCartBtn = $(this).siblings(".remove-from-cart");
-    $($addToCartBtn).attr('disabled', false)
-    $($removeFromCartBtn).attr('disabled', false)
+    $($addToCartBtn).attr('disabled', false);
+    $($removeFromCartBtn).attr('disabled', false);
     localStorage.getItem($id) && $($addToCartBtn).text(`Update Cart`);
     if ($quantity <= 100) {
       $quantity++;
     }
-  $input.val($quantity);
+    $input.val($quantity);
   });
 
 
-//Click Handlers for Order
+  //Click Handlers for Order
   $(document).on('click', '.hide-cart', function(event) {
 
     $('.order-container')
-    .animate({width: 'toggle'});
+      .animate({width: 'toggle'});
   });
 
   $(window).on("unload", function() {
     window.localStorage.clear();
   });
 
-  $(".empty-cart").on('click', function(){
+  $(".empty-cart").on('click', function() {
     if (confirm("Are you sure?")) {
       window.localStorage.clear();
       $('.order-items').empty();
@@ -205,7 +205,7 @@ $(document).ready(() =>{
       $('.remove-from-cart').attr('disabled', true);
     } else {
       return false;
-    };
+    }
   });
 
   $(document).on("click", ".delete-from-cart", function() {
@@ -220,14 +220,14 @@ $(document).ready(() =>{
     $quantity = 0;
     $input.val($quantity);
     $($addToCartBtn).text(`Add to Cart`);
-    $($addToCartBtn).attr('disabled', true)
-    $($removeFromCartBtn).attr('disabled', true)
+    $($addToCartBtn).attr('disabled', true);
+    $($removeFromCartBtn).attr('disabled', true);
   });
 
   $(document).on('click', '.checkout', function(event) {
     checkoutOrder(event);
     $('.enter-phone-number-form:hidden')
-    .animate({width: 'toggle'});
+      .animate({width: 'toggle'});
   });
 
   $('.order-container').hide();

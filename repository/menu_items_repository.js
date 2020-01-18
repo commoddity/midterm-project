@@ -4,12 +4,12 @@ module.exports = (db) => {
       const queryString = `
       SELECT id, name, blurb, price, image_url
       FROM menu_items
-      `
+      `;
       return db.query(queryString)
-      .then((res) => res.rows)
-      .catch((err) => {
-        console.error('query error', err.stack);
-      });
+        .then((res) => res.rows)
+        .catch((err) => {
+          console.error('query error', err.stack);
+        });
     }
-  }
+  };
 };

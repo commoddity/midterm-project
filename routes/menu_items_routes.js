@@ -10,12 +10,12 @@ module.exports = (menuItemsService) => {
 
   router.get("/menu", (req, res) => {
     menuItemsService.getMenuItems()
-    .then(result => {
-      const data = result;
-      res.json({data});
-    })
-    .catch(e => console.error(e))
+      .then(result => {
+        const data = result;
+        res.json({data});
+      })
+      .catch(e => console.error(e));
   });
 
-  return router
+  return router;
 };
