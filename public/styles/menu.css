@@ -1,22 +1,25 @@
 .menu-container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 20px;
+  grid-gap: 0.40%;
   justify-content: start;
-  margin-top: 30px;
-  margin-left: 20px;
-  margin-right: 20px;
-  -webkit-box-shadow: 10px 21px 43px -38px rgba(0,0,0,0.75);
-  -moz-box-shadow: 10px 21px 43px -38px rgba(0,0,0,0.75);
+  margin-top: 3%;
+  margin-left: 3%;
+  margin-right: 3%;
   box-shadow: 10px 21px 43px -38px rgba(0,0,0,0.75);
 }
 
 .menu-item {
-  justify-self: center;
+  display: grid;
   width: 80%;
-  border-radius: 15px;
-  border: 2px solid black;
-  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3%;
+  border-radius: 13px;
+  border: 3px solid black;
+  background: rgba(255, 255, 255, 0.9);
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
 .menu-item p {
@@ -27,16 +30,18 @@
 
 .item-name, .item-price {
   font-family: 'Yanone Kaffeesatz', sans-serif;
-  font-size: 10vw;
+  font-size: 30px;;
   text-align: center;
-  font-size: 7vw;
   margin: 1%;
 }
 
 .item-blurb {
   font-family: 'Lato', sans-serif;
+  grid-column: 2 / 2;
+  grid-row: 2 / 2;
   font-size: 24px;
   margin-bottom: 0;
+  margin: auto;
 }
 
 .card {
@@ -51,11 +56,18 @@
   margin: 10px;
 }
 
+.menu-image-div {
+  grid-row: 1 / 3;
+  grid-column: 1 / 1;
+}
+
 .menu-item-image {
-  height: 260px;
-  width: 340px;
-  margin: 10px;
-  padding: 1px;
+  max-height: 100%;
+  max-width: 100%;
+  width: 100%;
+  height: 90%;
+  margin: 0%;
+  padding: 4%;
   border: 3px solid black;
 }
 
@@ -63,6 +75,12 @@
   margin-left: 10px;
   margin-right: 10px;
   width: 90%;
+}
+
+.item-header {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 
 .quantity {
@@ -74,11 +92,14 @@ button {
   align-items: center;
 }
 
+button img {
+  vertical-align: middle;
+}
+
 .quantity button {
   border: 1px solid black;
   border-radius: 10px;
 }
-
 
 .quantity-field {
   width: 30px;
@@ -97,4 +118,9 @@ button {
 .minus {
   height:10px;
   width: 10px;
+}
+
+.add-cart-icon, .remove-cart-icon {
+  height: 12px;
+  width: 12px;
 }
