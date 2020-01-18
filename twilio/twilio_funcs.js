@@ -1,10 +1,8 @@
-const aws = require('aws-sdk');
-
-let twilioParams = new aws.S3({
+const twilioParams = {
   authToken: process.env.TWILIO_AUTH_TOKEN,
   accountSid: process.env.TWILIO_ACCOUNTSID,
   accountNumber: process.env.TWILIO_NUMBER
-});
+};
 
 const sendMessage = (messageBody, userPhoneNumber) => {
   const twilioClient = require('twilio')(twilioParams.accountSid, twilioParams.authToken);
