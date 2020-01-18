@@ -16,8 +16,6 @@ app.use(morgan('dev'));
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('../lib/db.js');
-const twilioParams = require('../lib/twilioParams');
-
 const db = new Pool(dbParams);
 db.connect();
 

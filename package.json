@@ -12,11 +12,13 @@
   "author": "Lighthouse Labs",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.606.0",
     "body-parser": "^1.19.0",
     "bootstrap": "^3.4.1",
     "chalk": "^2.4.2",
     "dotenv": "^2.0.0",
     "ejs": "^2.7.4",
+    "eslint": "^6.8.0",
     "express": "^4.17.1",
     "morgan": "^1.9.1",
     "pg": "^7.0",
