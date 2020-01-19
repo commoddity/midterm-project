@@ -1,7 +1,23 @@
+
+
 .body-container {
   display: flex;
   flex-direction: row;
   width: 100%;
+}
+
+#our-menu {
+  width: 220px;
+  border: 3px solid black;
+  background: rgba(255, 255, 255, 0.7);
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 70px;
+  padding-top: 5px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3%;
+  margin-bottom:10px;
 }
 
 .menu-container {
@@ -11,10 +27,10 @@
   grid-auto-rows: auto;
   grid-gap: 0.40%;
   justify-content: start;
-  overflow: hidden;
   margin-top: 3%;
   margin-left: 3%;
   margin-right: 0;
+  margin-bottom: 3%;
   box-shadow: 10px 21px 43px -38px rgba(0,0,0,0.75);
 }
 
@@ -22,10 +38,10 @@
   margin-top: 3%;
   margin-left: 0;
   width: 33%;
+  align-items: flex-start;
 }
 
 #restaurant-info {
-  position: sticky;
   display: grid;
   width: 80%;
   padding: 3%;
@@ -34,16 +50,19 @@
   margin-right: auto;
   border-radius: 13px;
   border: 3px solid black;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 92px;
 }
 
 #restaurant-info h3 {
   font-family: 'Yanone Kaffeesatz', sans-serif;
-  font-size: 40px;
+  font-size: 44px;
 }
 
 #restaurant-info p {
   font-family: 'Lato', sans-serif;
-  font-size: 24px;
+  font-size: 26px;
 }
 
 .menu-item {
@@ -59,7 +78,7 @@
   grid-column: 1;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr 1fr;
-  grid-column-gap: 30px;
+  grid-column-gap: 5%;
 }
 
 .menu-item div {
@@ -80,36 +99,43 @@
   padding: 4%;
   border: 3px solid black;
 }
+
 .item-header {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  max-height: 24%;
 }
 
 .item-name, .item-price {
   font-family: 'Yanone Kaffeesatz', sans-serif;
-  font-size: 40px;
-  text-align: left;
   margin: 1%;
 }
 
 .item-name {
-  grid-row: 1/ 1;
+  grid-row: 1;
+  grid-column: 1;
+  font-size: 40px;
+  text-align: left;
 }
 
 .item-price {
-  float: right;
+  grid-row: 1;
+  grid-column: 2;
+  font-size: 40px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .item-blurb {
   font-family: 'Lato', sans-serif;
   grid-column: 2 / 2;
-  grid-row: 2 / 2;
+  grid-row: 2;
   font-size: 24px;
   margin-bottom: 0px;
   margin-top: 0px;
 }
-
 
 .item-body {
   margin-left: 10px;
@@ -118,17 +144,29 @@
 }
 
 .quantity {
-  float: right;
-  grid-row: 2;
-  grid-column: 2 / 3;
+  margin-top: 1%;
   margin-left: auto;
+  vertical-align: middle;
+  grid-row: 1;
+  grid-column: 3;
 }
 
 button {
+  cursor: pointer;
   align-items: center;
+  padding: 0px 6px 1px 5px;
+  line-height: 21px;
+  height: 35px;
+  width: 35px;
+  opacity: 0.8;
 }
 
-button img {
+button:hover {
+  background-color: rgb(119, 21, 21);
+  opacity: 1;
+}
+
+button > img {
   vertical-align: middle;
 }
 

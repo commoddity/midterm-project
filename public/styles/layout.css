@@ -5,8 +5,25 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;;
+  margin-bottom: 2.5rem;
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 3.5rem;
 }
 
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 3.5rem;
+}
+
+p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 
 .restaurant-header {
   position:relative;
@@ -56,7 +73,17 @@
   margin-right: auto;
 }
 
+#footer {
+  position: absolute;
+  border: 3px solid black;
+  bottom: -105px;
+  width: 100%;
+  height: 3.8rem;
+  background-image: url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3356&q=80');
+}
+
 #copyright {
   font-family: 'Lato', sans-serif;
-  float: right;
+  text-align: center;
+  color: white;
 }

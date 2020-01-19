@@ -26,6 +26,16 @@
   height: 50%;
 }
 
+#hide-cart, #empty-cart, #submit {
+  width: auto;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+#hide-cart:hover, #empty-cart:hover, #submit:hover {
+  background-color: rgb(119, 21, 21);
+  opacity: 1;
+}
 .order-container h1 {
   text-align:center;
   align-self: center;

@@ -163,6 +163,7 @@ $(document).ready(() =>{
     const $input = $(this).closest('div').find('input');
     let $quantity = parseInt($input.val());
     $quantity === 0 ? window.localStorage.removeItem($id) : JSON.stringify(localStorage.setItem($id, $quantity));
+    $("#cart-background").effect("bounce", {times: 3}, "slow");
     updateCart();
     renderOrderItems(localStorage);
   });
@@ -177,7 +178,7 @@ $(document).ready(() =>{
     updateCart();
     renderOrderItems(localStorage);
     $quantity = 0;
-    // $($addToCartBtn).text(`Add to Cart`);
+    $("#cart-background").effect("bounce", {times: 3}, "fast");
     $($addToCartBtn).attr('disabled', true);
     $input.val($quantity);
     $this.attr('disabled', true);
@@ -239,6 +240,7 @@ $(document).ready(() =>{
       $('div.quantity').find('input').val('0');
       $('.add-to-cart').attr('disabled', true);
       $('.remove-from-cart').attr('disabled', true);
+      $("#cart-background").effect("bounce", {times: 3}, "fast");
     } else {
       return false;
     }
@@ -251,6 +253,7 @@ $(document).ready(() =>{
     const $removeFromCartBtn = $input.siblings('.remove-from-cart');
     let $quantity = parseInt($input.val());
     window.localStorage.removeItem($id);
+    $("#cart-background").effect("bounce", {times: 3}, "fast");
     updateCart();
     renderOrderItems(localStorage);
     $quantity = 0;

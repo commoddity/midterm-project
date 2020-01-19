@@ -27,20 +27,27 @@
     <script type="text/javascript" src="/scripts/helpers.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
   <body id="body">
-    <div>
+    <div id="page-container">
+      <div id="content-wrap">
+        <div>
 
-    <%- include("./partials/_navbar") %>
-    <%- include("./partials/_restaurantCover") %>
+        <%- include("./partials/_navbar") %>
+        <%- include("./partials/_restaurantCover") %>
+
+        </div>
+      </div>
+
+      <footer id="footer">
+        <p id="copyright">&copy; 2020, Buns On Broadway</p>
+      </footer>
 
     </div>
   </body>
-
-  <footer>
-    <p id="copyright">&copy; 2020, Buns On Broadway</p>
-  </footer>
 
 </html>
