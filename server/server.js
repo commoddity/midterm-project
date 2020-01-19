@@ -44,13 +44,20 @@ const ordersServiceFactory = require("../service/orders_service");
 const ordersRepository = ordersRepositoryFactory(db);
 const ordersService = ordersServiceFactory(ordersRepository);
 
+//Restaurants Layers
+const restaurantsRepositoryFactory = require("../repository/restaurants_repository");
+const restaurantsServiceFactory = require("../service/restaurants_service");
+
+const restaurantsRepository = restaurantsRepositoryFactory(db);
+const restaurantsService = restaurantsServiceFactory(restaurantsRepository);
+
 //Order Placed Layer
 const orderPlacedServiceFactory = require("../service/order_placed_service");
 
 const orderPlacedService = orderPlacedServiceFactory(ordersService, db);
 
 // Mount all resource routes
-app.use("/", menuRoutes(menuItemsService));
+app.use("/", menuRoutes(menuItemsService, restaurantsService));
 app.use("/", orderRoutes(ordersService, orderPlacedService));
 
 // Home page

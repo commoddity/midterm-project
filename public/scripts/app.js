@@ -2,23 +2,23 @@ const { helpers } = ('./helpers.js');
 
 $(document).ready(() =>{
 
-  let globalData;
+  // let globalData;
 
   // Menu Creation Functions
-  const createMenuItem = function(data) {
+  const createMenuItem = function(menuItems) {
     const menuItem = `
       <div class="menu-item">
         <div class="menu-image-div">
-          <img class="menu-item-image" src="${data.image_url}" alt="Card image cap">
+          <img class="menu-item-image" src="${menuItems.image_url}" alt="Card image cap">
         </div>
         <div class="item-header">
           <div>
-            <p class="item-name">${data.name}</p>
+            <p class="item-name">${menuItems.name}</p>
           </div>
           <div>
-            <p class="item-price">$${data.price}.00</p>
+            <p class="item-price">$${menuItems.price}.00</p>
           </div>
-          <div class="quantity" data-value="${data.id}">
+          <div class="quantity" data-value="${menuItems.id}">
             <button class="plus-btn" type="button" name="button">
               <img class="plus" src="../img/plus.png" alt="" />
             </button>
@@ -35,7 +35,7 @@ $(document).ready(() =>{
           </div>
         </div>
         <div class="item-blurb">
-          <p>${data.blurb}</p>
+          <p>${menuItems.blurb}</p>
         </div>
       </div>
     `;
@@ -44,9 +44,9 @@ $(document).ready(() =>{
 
   const createOrderItem = function(localKey) {
     const quantity = window.localStorage.getItem(localKey);
-    const name = globalData.find(e => e.id == localKey).name;
-    const price = globalData.find(e => e.id == localKey).price;
-    const id = globalData.find(e => e.id == localKey).id;
+    const name = globalData.menuItems.find(e => e.id == localKey).name;
+    const price = globalData.menuItems.find(e => e.id == localKey).price;
+    const id = globalData.menuItems.find(e => e.id == localKey).id;
     const totalPrice = (price * quantity);
     const orderItem = `
     <div class="each-item" data-value="${id}">
@@ -57,15 +57,38 @@ $(document).ready(() =>{
         <img class="delete-button" src="../img/delete.png" alt="" />
       </button>
     </div>
-
     `;
     return {orderItem, totalPrice};
   };
 
-  const renderMenuItems = (data) => {
+  const createRestaurantInfo = function(restaurants) {
+    const restaurantInfo = `
+    <div id="restaurant-info">
+      <div id="restaurant-location">
+        <h3>Our Location</h3>
+        <p>${restaurants.street_address}</p>
+        <p>${restaurants.city}</p>
+        <p>${restaurants.postal_code}</p>
+        <p>${restaurants.phone_number}</p>
+        <p>${restaurants.email}</p>
+      </div>
+      <div id="restaurant-hours">
+        <h3>Restaurant Hours</h3>
+        <p>Monday - Friday: 9:00AM - 10:00PM</p>
+        <p>Saturday:        10:00AM - 9:00PM</p>
+        <p>Sunday:          8:00AM - 5:00PM</p>
+      </div>
+    </div>
+    `
+    return restaurantInfo;
+  };
+
+  const renderMenuItems = (menuItems, restaurants) => {
     const domContainer = $(`.menu-container`);
     domContainer.empty();
-    data.forEach(item => {
+    const restaurantInfo = createRestaurantInfo(restaurants);
+    $(window).width() > 1024 && domContainer.append(restaurantInfo);
+    menuItems.forEach(item => {
       const menuItem = createMenuItem(item);
       domContainer.append(menuItem);
     });
@@ -93,12 +116,14 @@ $(document).ready(() =>{
       url: get_url,
       method: request_method
     })
-      .done((result) => {
-        globalData = result.data;
-        renderMenuItems(globalData);
-        updateQuantity();
-      })
-      .catch(e => console.error(e));
+    .done((result) => {
+      globalData = result.queryData;
+      menuItems = globalData.menuItems;
+      restaurants = globalData.restaurants[0];
+      renderMenuItems(menuItems, restaurants);
+      updateQuantity();
+    })
+    .catch(e => console.error(e));
   };
 
   const checkoutOrder = (event) => {
@@ -107,10 +132,10 @@ $(document).ready(() =>{
     const request_method = 'POST';
     const checkoutCart = getPropertiesFromLocalStorage();
     $.ajax({
-      url: post_url,
-      method: request_method,
-      data: checkoutCart
-    })
+        url: post_url,
+        method: request_method,
+        data: checkoutCart
+      })
       .then(() => {
         window.location.assign('/checkout');
       })
@@ -119,15 +144,15 @@ $(document).ready(() =>{
 
 
   // Twilio AJAX Calls
-  const sendSms = (event) => {
-    const post_url = `/send`;
-    const request_method = `POST`;
-    $.ajax({
-      url: post_url,
-      method: request_method
-    })
-      .catch(e => console.error(e));
-  };
+  // const sendSms = (event) => {
+  //   const post_url = `/send`;
+  //   const request_method = `POST`;
+  //   $.ajax({
+  //     url: post_url,
+  //     method: request_method
+  //   })
+  //     .catch(e => console.error(e));
+  // };
 
 
   // Click Handlers for Menu Items

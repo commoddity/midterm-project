@@ -10,6 +10,19 @@
   box-shadow: 10px 21px 43px -38px rgba(0,0,0,0.75);
 }
 
+#restaurant-info {
+  display: grid;
+  width: 80%;
+  padding: 3%;
+  background: rgba(255, 255, 255, 0.9);
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 13px;
+  border: 3px solid black;
+  grid-row: 1;
+  grid-column: 2;
+}
+
 .menu-item {
   display: grid;
   width: 80%;
