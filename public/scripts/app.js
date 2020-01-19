@@ -74,7 +74,7 @@ $(document).ready(() =>{
       </div>
       <div id="restaurant-hours">
         <h3>Restaurant Hours</h3>
-        <p>Monday - Friday: 9:00AM - 10:00PM</p>
+        <p>Mon - Fri: 9:00AM - 10:00PM</p>
         <p>Saturday:        10:00AM - 9:00PM</p>
         <p>Sunday:          8:00AM - 5:00PM</p>
       </div>
@@ -87,7 +87,9 @@ $(document).ready(() =>{
     const domContainer = $(`.menu-container`);
     domContainer.empty();
     const restaurantInfo = createRestaurantInfo(restaurants);
-    $(window).width() > 1024 && domContainer.append(restaurantInfo);
+    if ($(window).width() > 1024) {
+      $('.restaurant-info-container').append(restaurantInfo);
+    }
     menuItems.forEach(item => {
       const menuItem = createMenuItem(item);
       domContainer.append(menuItem);
@@ -264,6 +266,9 @@ $(document).ready(() =>{
       .animate({width: 'toggle'});
   });
 
+  if ($(window).width() <= 1024) {
+    $('.restaurant-info-container').remove();
+  };
   $('.order-container').hide();
   loadMenuItems();
   updateCart();
