@@ -144,28 +144,15 @@ $(document).ready(() =>{
       .catch(e => console.error(e));
   };
 
-
-  // Twilio AJAX Calls
-  // const sendSms = (event) => {
-  //   const post_url = `/send`;
-  //   const request_method = `POST`;
-  //   $.ajax({
-  //     url: post_url,
-  //     method: request_method
-  //   })
-  //     .catch(e => console.error(e));
-  // };
-
-
   // Click Handlers for Menu Items
   $(document).on("click", ".add-to-cart", function() {
     const $id = $(this).closest('div.quantity').data("value");
     const $input = $(this).closest('div').find('input');
     let $quantity = parseInt($input.val());
     $quantity === 0 ? window.localStorage.removeItem($id) : JSON.stringify(localStorage.setItem($id, $quantity));
-    $("#cart-background").effect("bounce", {times: 3}, "slow");
     updateCart();
     renderOrderItems(localStorage);
+    $("#cart-background").effect("bounce", {times: 3}, "slow");
   });
 
   $(document).on("click", ".remove-from-cart", function() {
@@ -185,16 +172,12 @@ $(document).ready(() =>{
   });
 
   $(document).on('click', '.minus-btn', function(event) {
-    const $id = $(this).closest('div.quantity').data("value");
     const $input = $(this).closest('div').find('input');
     let $quantity = parseInt($input.val());
-    const $addToCartBtn = $(this).siblings(".add-to-cart");
     const $removeFromCartBtn = $(this).siblings(".remove-from-cart");
     if ($quantity >= 1) {
-      // localStorage.getItem($id) && $($addToCartBtn).text(`Update Cart`);
       $quantity--;
       if ($quantity === 0) {
-        // localStorage.getItem($id) && $($addToCartBtn).text(`Update Cart`);
         $($removeFromCartBtn).attr('disabled', true);
       }
     }
@@ -202,14 +185,12 @@ $(document).ready(() =>{
   });
 
   $(document).on('click', '.plus-btn', function(event) {
-    const $id = $(this).closest('div.quantity').data("value");
     const $input = $(this).closest('div').find('input');
     let $quantity = parseInt($input.val());
     const $addToCartBtn = $(this).siblings(".add-to-cart");
     const $removeFromCartBtn = $(this).siblings(".remove-from-cart");
     $($addToCartBtn).attr('disabled', false);
     $($removeFromCartBtn).attr('disabled', false);
-    // localStorage.getItem($id) && $($addToCartBtn).text(`Update Cart`);
     if ($quantity <= 100) {
       $quantity++;
     }
@@ -241,6 +222,7 @@ $(document).ready(() =>{
       $('.add-to-cart').attr('disabled', true);
       $('.remove-from-cart').attr('disabled', true);
       $("#cart-background").effect("bounce", {times: 3}, "fast");
+      updateCart();
     } else {
       return false;
     }
@@ -258,7 +240,6 @@ $(document).ready(() =>{
     renderOrderItems(localStorage);
     $quantity = 0;
     $input.val($quantity);
-    // $($addToCartBtn).text(`Add to Cart`);
     $($addToCartBtn).attr('disabled', true);
     $($removeFromCartBtn).attr('disabled', true);
   });
