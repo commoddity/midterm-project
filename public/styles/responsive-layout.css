@@ -68,13 +68,13 @@
     color: white;
     font-family: "Yanone Kaffeesatz", sans-serif;
     width: auto;
-    font-size: 40px;
+    font-size: 6.5vh;
     padding-top: 5%;
     opacity: 1;
   }
 
   .restaurant-header p {
-    font-size: 1em;
+    font-size: 3.4vh;
     width: auto;
     font-family: "Lato", sans-serif;
     text-align: center;
@@ -101,6 +101,7 @@
     width: 100%;
     grid-template-columns: 1fr 1fr;
     max-height: 225px;
+    min-height: 33vh;
   }
 
   .menu-item div {

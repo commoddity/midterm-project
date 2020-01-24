@@ -1,7 +1,7 @@
 const { helpers } = "./helpers.js";
 
 $(document).ready(() => {
-  // let globalData;
+  let globalData;
 
   // Menu Creation Functions
   const createMenuItem = function(menuItems) {
@@ -112,7 +112,7 @@ $(document).ready(() => {
       method: request_method
     })
       .done(result => {
-        globalData = result.queryData;
+        globalData = result;
         menuItems = globalData.menuItems;
         restaurants = globalData.restaurants[0];
         renderMenuItems(menuItems, restaurants);

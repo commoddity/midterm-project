@@ -1,21 +1,21 @@
 // load .env data into process.env
-require('dotenv').config();
+require("dotenv").config();
 
 // Web server config
-const PORT       = process.env.PORT || 8080;
-const HOST       = '0.0.0.0';
-const ENV        = process.env.ENV || "development";
-const express    = require("express");
+const PORT = process.env.PORT || 8080;
+const HOST = "0.0.0.0";
+const ENV = process.env.ENV || "development";
+const express = require("express");
 const bodyParser = require("body-parser");
-const app        = express();
-const morgan     = require('morgan');
+const app = express();
+const morgan = require("morgan");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 
 // PG database client/connection setup
-const { Pool } = require('pg');
-const dbParams = require('../lib/db.js');
+const { Pool } = require("pg");
+const dbParams = require("../lib/db.js");
 const db = new Pool(dbParams);
 db.connect();
 
@@ -62,5 +62,7 @@ app.use("/", orderRoutes(ordersService, orderPlacedService));
 
 // Home page
 app.listen(PORT, HOST, () => {
-  console.log(`Example app listening on port ${PORT}\nWelcome to Buns on Broadway!`);
+  console.log(
+    `Example app listening on port ${PORT}\nWelcome to Buns on Broadway!`
+  );
 });
