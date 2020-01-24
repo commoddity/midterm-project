@@ -1,5 +1,14 @@
-@media only screen and (min-width: 300px) and (max-width: 700px) {
-  .navbar {
+@media only screen and (min-width: 500px) and (max-width: 1500px) {
+  .menu-container {
+    width: 100%;
+    margin-right: 3%;
+  }
+
+  .restaurant-info-container {
+    display: none;
+  }
+
+    /* .navbar {
     flex-wrap: nowrap;
   }
 
@@ -84,14 +93,14 @@
   }
 
   #our-menu {
-    margin-top: 3vh;
+    margin-top: 3vh; */
   }
 
   /* MENU ITEMS START BELOW */
 
-  .menu-container p {
-    margin-top: 1vh;
-    margin-bottom: 1vh;
+  /* .menu-container p {
+    margin-top: 0rem;
+    margin-bottom: 1rem;
   }
 
   .menu-container {
@@ -104,8 +113,7 @@
     width: 100%;
     grid-template-columns: 1fr 1fr;
     max-height: 225px;
-    min-height: 38vh;
-    min-width: 53vh;
+    min-height: 33vh;
   }
 
   .menu-item div {
@@ -235,5 +243,5 @@
     border: 2px solid black;
     min-width: 90px;
     min-height: 53px;
-  }
+  } */
 }

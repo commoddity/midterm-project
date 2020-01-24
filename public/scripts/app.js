@@ -257,9 +257,6 @@ $(document).ready(() => {
     $(".enter-phone-number-form:hidden").animate({ width: "toggle" });
   });
 
-  if ($(window).width() <= 1024) {
-    $(".restaurant-info-container").remove();
-  }
   $(".order-container").hide();
   loadMenuItems();
   updateCart();
