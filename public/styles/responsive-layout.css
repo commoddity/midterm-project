@@ -1,12 +1,11 @@
-@media only screen and (min-width: 300px)  and (max-width: 500px){
-
+@media only screen and (min-width: 300px) and (max-width: 500px) {
   .navbar {
     flex-wrap: nowrap;
   }
 
   #buns-link {
     color: white;
-    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-family: "Yanone Kaffeesatz", sans-serif;
     font-size: 25px;
   }
 
@@ -36,7 +35,7 @@
     margin-right: 5px;
   }
 
-  .restaurant-header{
+  .restaurant-header {
     position: relative;
     text-align: center;
     color: white;
@@ -49,7 +48,8 @@
     background-color: black;
     background-position: center;
     background-image: url(https://artfuldodgerpub.com/wp-content/uploads/2019/06/screen-shot-2019-06-13-at-6.01.30-pm-2048x683.png);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 
   .header-box {
@@ -66,7 +66,7 @@
 
   .restaurant-header h1 {
     color: white;
-    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-family: "Yanone Kaffeesatz", sans-serif;
     width: auto;
     font-size: 40px;
     padding-top: 5%;
@@ -74,9 +74,9 @@
   }
 
   .restaurant-header p {
-    font-size: 1.2em;
+    font-size: 1em;
     width: auto;
-    font-family: 'Lato', sans-serif;
+    font-family: "Lato", sans-serif;
     text-align: center;
     opacity: 1;
     margin-left: 2%;
@@ -85,6 +85,11 @@
   }
 
   /* MENU ITEMS START BELOW */
+
+  .menu-container p {
+    margin-top: 0rem;
+    margin-bottom: 1rem;
+  }
 
   .menu-container {
     grid-template-columns: 1fr;
@@ -96,7 +101,10 @@
     width: 100%;
     grid-template-columns: 1fr 1fr;
     max-height: 225px;
+  }
 
+  .menu-item div {
+    margin-bottom: -1vh;
   }
 
   .menu-image-div {
@@ -121,8 +129,9 @@
     grid-template-rows: 1fr 1fr 1fr;
   }
 
-  .item-name, .item-price {
-    font-family: 'Yanone Kaffeesatz', sans-serif;
+  .item-name,
+  .item-price {
+    font-family: "Yanone Kaffeesatz", sans-serif;
     font-size: 6vw;
     text-align: center;
     margin: 1%;
@@ -164,13 +173,13 @@
   }
 
   .add-cart-icon {
-    height: 15px;;
-    width: 15px;;
+    height: 15px;
+    width: 15px;
   }
 
   .remove-cart-icon {
-    height: 15px;;
-    width: 15px;;
+    height: 15px;
+    width: 15px;
   }
 
   .quantity-field {
@@ -178,8 +187,7 @@
   }
 
   button {
-    max-width: 25px;
-    max-height: 25px;
+    max-width: 4.5vh;
   }
 
   button:hover {
@@ -187,28 +195,31 @@
     opacity: 0.5;
   }
 
-  .plus {
-    height: 10px;
-    width: 10px;
-    vertical-align: middle;
-  }
-
-  .minus {
-    height: 10px;
-    width: 10px;
-    vertical-align: middle;
-  }
-
   .item-num {
-    width: 15px;
+    font-size: 3vh;
+    width: 2vh;
     text-align: center;
     vertical-align: middle;
   }
 
-  .add-cart-icon, .remove-cart-icon {
-    height: 12px;
-    width: 12px;
-    vertical-align: middle;
+  .add-to-cart {
+    background: url(../img/cart-plus.svg) no-repeat center;
+    background-size: 75% 75%;
+  }
+
+  .remove-from-cart {
+    background: url(../img/times-circle.svg) no-repeat center;
+    background-size: 75% 75%;
+  }
+
+  .plus {
+    background: url(../img/plus-circle.svg) no-repeat center;
+    background-size: 75% 75%;
+  }
+
+  .minus {
+    background: url(../img/minus-circle.svg) no-repeat center;
+    background-size: 75% 75%;
   }
 
   #cart-background {
@@ -220,5 +231,4 @@
     min-width: 90px;
     min-height: 53px;
   }
-
 }
